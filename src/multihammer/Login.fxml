@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="multihammer.LoginController">
+    <stylesheets>
+        <URL value="@login.css" />
+    </stylesheets>
+   <children>
+      <PasswordField layoutX="198.0" layoutY="200.0" prefHeight="25.0" prefWidth="188.0" promptText="Contraseña" />
+      <Label fx:id="labelWarning" layoutX="187.0" layoutY="315.0" prefHeight="17.0" prefWidth="219.0" />
+      <Label fx:id="labelWelcome" layoutX="247.0" layoutY="74.0" text="Multihammer" />
+      <Button fx:id="btnLogin" layoutX="260.0" layoutY="261.0" mnemonicParsing="false" onAction="#Login" text="Ingresar" />
+      <TextField fx:id="txtUser" layoutX="196.0" layoutY="145.0" prefHeight="25.0" prefWidth="188.0" promptText="Usuario" />
+   </children>
+</AnchorPane>
