@@ -1,5 +1,7 @@
 package multihammer;
 
+import Controller.LoginController;
+import Model.LoginModel;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -12,8 +14,12 @@ public class Multihammer extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
-            Parent root = loader.load();
+            FXMLLoader login = new FXMLLoader(getClass().getResource("/View/Login.fxml"));
+            Parent root = login.load();
+            LoginController loginController = login.getController();
+            LoginModel loginModel = new LoginModel();
+            loginController.initModel(loginModel);
+            
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Login");
