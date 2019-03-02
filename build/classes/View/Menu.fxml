@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+   <children>
+      <AnchorPane fx:id="panel" layoutY="57.0" prefHeight="341.0" prefWidth="600.0" />
+      <Button fx:id="btnMenu" layoutX="29.0" layoutY="23.0" mnemonicParsing="false" text="Menú" />
+      <Label layoutX="230.0" layoutY="30.0" text="Pruebas~~~">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <FlowPane fx:id="navBar" layoutY="59.0" prefHeight="341.0" prefWidth="120.0" style="-fx-background-color: white;" translateX="-120.0">
+         <children>
+            <Label text="Probando esta onda" />
+         </children>
+      </FlowPane>
+   </children>
+</AnchorPane>

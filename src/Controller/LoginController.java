@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.LoginModel;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,14 +13,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 // FXML Clase del Controlador "Login"
 public class LoginController implements Initializable {
-    @FXML TextField txtUser;
-    @FXML PasswordField txtPassword;
+    @FXML JFXTextField txtUser;
+    @FXML JFXPasswordField txtPassword;
     private LoginModel model;
     
     // Inicializa la clase del controlador
@@ -43,9 +43,9 @@ public class LoginController implements Initializable {
             int id = model.validarLogin(txtUser.getText(), txtPassword.getText()); 
             if(id != 0) {
                 //Crea controlador de la vista Menú y manda el id del perfil que ingresó, prepara la nueva vista a cargar
-                FXMLLoader testLoader = new FXMLLoader(getClass().getResource("/View/test.fxml"));
+                FXMLLoader testLoader = new FXMLLoader(getClass().getResource("/View/Menu.fxml"));
                 Parent testParent = testLoader.load();
-                TestController testController = testLoader.getController();
+                MenuController testController = testLoader.getController();
                 testController.setIdPerfil(id);
                 Scene testScene = new Scene(testParent);
                 // Obtiene la información de Stage

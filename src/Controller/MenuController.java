@@ -29,7 +29,7 @@ import javafx.util.Duration;
  *
  * @author Kevin Lizárraga
  */
-public class TestController implements Initializable {
+public class MenuController implements Initializable {
 
     private int idPerfil;
     private MenuModel menuModel = new MenuModel();
@@ -48,10 +48,6 @@ public class TestController implements Initializable {
         // TODO
         displayMenu();
     }    
-    
-    public void generateModules() {
-        
-    }
     
     public void createModulesButtons(ArrayList<String> modules) {
         Button inicio = new Button("Inicio");
