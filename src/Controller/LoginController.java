@@ -48,6 +48,7 @@ public class LoginController implements Initializable {
                 MenuController testController = testLoader.getController();
                 testController.setIdPerfil(id);
                 Scene testScene = new Scene(testParent);
+                testScene.getStylesheets().add("/Resources/main.css");
                 // Obtiene la información de Stage
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 //Carga la vista de menu
