@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import Model.LoginModel;
 import Model.MenuModel;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXHamburger;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,11 +12,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.util.Duration;
@@ -37,9 +36,9 @@ public class MenuController implements Initializable {
     @FXML
     private AnchorPane panel;
     @FXML
-    private Button btnMenu;
-    @FXML
     private FlowPane navBar;
+    @FXML 
+    private JFXHamburger btnMenu;
     /**
      * Initializes the controller class.
      */
@@ -51,12 +50,14 @@ public class MenuController implements Initializable {
     
     public void createModulesButtons(ArrayList<String> modules) {
         Button inicio = new Button("Inicio");
+        inicio.getStyleClass().add("menuBtn");
         inicio.setOnAction((event) -> {
             panel.getChildren().clear();
         });
         navBar.getChildren().add(inicio);
         for(String x : modules) {
             Button button = new Button(x);
+            button.getStyleClass().add("menuBtn");
             button.setOnAction((event) -> {
                 try {
                     loadView(x);
@@ -67,6 +68,7 @@ public class MenuController implements Initializable {
             navBar.getChildren().add(button);
         }
         Button salir = new Button("Salir");
+        salir.getStyleClass().add("menuBtn");
         salir.setOnAction((event) -> {
             System.out.println("Saliendo");
         });
@@ -76,7 +78,7 @@ public class MenuController implements Initializable {
     public void loadView(String name) throws IOException {
         FXMLLoader loadFXML = new FXMLLoader(getClass().getResource("/View/"+name+".fxml"));
         Parent root = loadFXML.load();
-        LoginController loginController = loadFXML.getController();
+//        LoginController loginController = loadFXML.getController();
         panel.getChildren().setAll(root);
     }
     
@@ -91,7 +93,7 @@ public class MenuController implements Initializable {
         TranslateTransition openNav=new TranslateTransition(new Duration(350), navBar);
         openNav.setToX(0);
         TranslateTransition closeNav=new TranslateTransition(new Duration(350), navBar);
-        btnMenu.setOnAction((ActionEvent evt)->{
+        btnMenu.addEventHandler(MouseEvent.MOUSE_PRESSED, (e)->{
             if(navBar.getTranslateX()!=0){
                 openNav.play();
             }else{
