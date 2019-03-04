@@ -9,6 +9,10 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="Multihammer.jar" size="13594" download="eager" />
+    <jar href="Multihammer.jar" size="20776" download="eager" />
+    <jar href="lib\c3p0-0.9.1-pre6.jar" size="531005" download="eager" />
+    <jar href="lib\jboss-common-jdbc-wrapper-src.jar" size="35342" download="eager" />
+    <jar href="lib\jboss-common-jdbc-wrapper.jar" size="50184" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
     <jar href="lib\mysql-connector-java-8.0.15.jar" size="2134905" download="eager" />
   </resources>
