@@ -1,0 +1,11 @@
+.menuBtn {
+    -fx-text-fill: white;
+    -jfx-button-type: RAISED;
+    -fx-pref-width: 120;
+    -fx-background-color:  transparent;
+}
+
+.menuBtn:hover {
+    -fx-background-color:  #ce8602;
+    -fx-cursor: hand;
+}
