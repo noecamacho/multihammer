@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 public class Perfil extends RecursiveTreeObject<Perfil> {
 
     public SimpleStringProperty name;
-
     public SimpleStringProperty id;
 
     public Perfil(String name, String id) {

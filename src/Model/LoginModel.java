@@ -15,7 +15,7 @@ public class LoginModel {
         PreparedStatement ps;
         ResultSet rs;
         try {
-            ps = reg.prepareStatement("SELECT usuarios.id_usuario, usuarios.usuario, usuarios.password FROM usuarios where usuario = ? AND password = ?");
+            ps = reg.prepareStatement("SELECT usuarios.id_usuario FROM usuarios where usuario = ? AND password = ?");
             ps.setString(1, username);
             ps.setString(2, password);
             rs = ps.executeQuery();

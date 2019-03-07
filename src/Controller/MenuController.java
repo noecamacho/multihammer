@@ -16,18 +16,17 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
-/**
- * FXML Controller class
- *
- * @author Kevin Lizárraga
- */
 public class MenuController implements Initializable {
 
     private int idPerfil;
@@ -39,12 +38,9 @@ public class MenuController implements Initializable {
     private FlowPane navBar;
     @FXML 
     private JFXHamburger btnMenu;
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         displayMenu();
     }    
     
@@ -70,7 +66,8 @@ public class MenuController implements Initializable {
         Button salir = new Button("Salir");
         salir.getStyleClass().add("menuBtn");
         salir.setOnAction((event) -> {
-            System.out.println("Saliendo");
+            Stage stage = (Stage) salir.getScene().getWindow();
+            stage.close();
         });
         navBar.getChildren().add(salir);
     }
@@ -102,5 +99,4 @@ public class MenuController implements Initializable {
             }
         });
     }
-    
 }
