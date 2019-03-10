@@ -1,8 +1,10 @@
 package Controller;
 
+import Model.Dialogs;
 import Model.Producto;
 import Model.ProductosModel;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,8 +31,9 @@ import javafx.stage.Stage;
 public class ProductosController implements Initializable {
     
     private final ProductosModel modelo = new ProductosModel();
+    final private Dialogs dialogs = new Dialogs();
     private Producto selectedProduct = new Producto();
-            
+    
     @FXML
     private JFXButton btnAgregar;
     @FXML
@@ -38,12 +42,15 @@ public class ProductosController implements Initializable {
     private JFXButton btnEliminar;
     @FXML
     private JFXTreeTableView<Producto> table;
+    @FXML
+    private JFXTextField searchField; 
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        createTable();
         createTableView();
     }    
     
@@ -52,11 +59,23 @@ public class ProductosController implements Initializable {
         return selectedItem == null ? null : selectedItem.getValue();
     }
     
-    public void createTableView() {
-
+    private ChangeListener<String> setupSearchField(final JFXTreeTableView<Producto> tableView) {
+        return (o, oldVal, newVal) ->
+            tableView.setPredicate(personProp -> {
+                final Producto prod = personProp.getValue();
+                return prod.material.get().contains(newVal)
+                    || prod.unidad.get().contains(newVal)
+                    || prod.proveedor.get().contains(newVal);
+            });
+    }
+    
+    public void createTable() {
+        
         table.getSelectionModel()
                 .selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> giveValues(getLeadSelect()));
+                .addListener((observable, oldValue, newValue) -> this.selectedProduct = getLeadSelect());
+        
+        searchField.textProperty().addListener(setupSearchField(table));
 
         JFXTreeTableColumn<Producto, String> id = new JFXTreeTableColumn("ID");
         id.setPrefWidth(100);
@@ -82,9 +101,11 @@ public class ProductosController implements Initializable {
         proveedor.setPrefWidth(100);
         proveedor.setCellValueFactory((TreeTableColumn.CellDataFeatures<Producto, String> param) -> param.getValue().getValue().proveedor);
 
-        final TreeItem<Producto> root = new RecursiveTreeItem<>(tableInformation(), RecursiveTreeObject::getChildren);
-
         table.getColumns().setAll(id, material, unidad, precio, cantidad, proveedor);
+    }
+    
+    public void createTableView() {
+        TreeItem<Producto> root = new RecursiveTreeItem<>(tableInformation(), RecursiveTreeObject::getChildren);
         table.setRoot(root);
         table.setShowRoot(false);
     }
@@ -107,7 +128,7 @@ public class ProductosController implements Initializable {
         stage.setTitle("Agregar Producto");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)event.getSource()).getScene().getWindow() );
-        stage.show();
+        stage.showAndWait();
         createTableView();
     }
 
@@ -122,28 +143,21 @@ public class ProductosController implements Initializable {
         stage.setTitle("Agregar Producto");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)event.getSource()).getScene().getWindow() );
-        stage.show();
+        stage.showAndWait();
         createTableView();
     }
 
     @FXML
     private void btnEliminarAction(ActionEvent event) {
-        if(this.selectedProduct.id_producto != null) {
-            modelo.eliminarProducto(this.selectedProduct.id_producto.get());
-            this.selectedProduct.setId_producto("");
-        } else {
-            System.out.println("selecciona algo");
+        if(dialogs.displayMessage((Stage) btnEliminar.getScene().getWindow(), "Eliminar producto", "¿Estás seguro que deseas eliminar este producto?", "Si", "No")) {
+            if(this.selectedProduct.id_producto != null) {
+                modelo.eliminarProducto(this.selectedProduct.id_producto.get());
+                this.selectedProduct.setId_producto("");
+            } else {
+                System.out.println("selecciona algo");
+            }
+            createTableView();
         }
-        createTableView();
-    }
-    
-    public void giveValues(Producto x) {
-        this.selectedProduct.setCantidad(x.cantidad);
-        this.selectedProduct.setId_producto(x.id_producto);
-        this.selectedProduct.setMaterial(x.material);
-        this.selectedProduct.setPrecio(x.precio);
-        this.selectedProduct.setProveedor(x.proveedor);
-        this.selectedProduct.setUnidad(x.unidad);
     }
     
 }

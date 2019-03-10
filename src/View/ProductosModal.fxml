@@ -6,7 +6,6 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.validation.RequiredFieldValidator?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -64,7 +63,7 @@
                                  <Font name="Roboto Medium" size="18.0" />
                               </font>
                            </Label>
-                           <Spinner fx:id="txtCantidad" editable="true" prefHeight="30.0" prefWidth="94.0" GridPane.columnIndex="1" />
+                           <JFXTextField fx:id="txtCantidad" focusColor="#8d6e63" GridPane.columnIndex="1" />
                         </children>
                      </GridPane>
                      <JFXComboBox fx:id="txtUnidades" focusColor="#8d6e63" prefHeight="25.0" prefWidth="310.0" promptText="Unidades de medida" />
@@ -79,7 +78,7 @@
                      <Font name="Roboto Medium" size="18.0" />
                   </font>
                     </JFXTextArea>
-               <JFXButton fx:id="btnAgregar" buttonType="RAISED" contentDisplay="CENTER" onAction="#agregar" prefHeight="39.0" prefWidth="124.0" style="-fx-background-color: #8D6E63;" text="AGREGAR" textAlignment="CENTER" textFill="WHITE">
+               <JFXButton fx:id="btnAgregar" buttonType="RAISED" contentDisplay="CENTER" prefHeight="39.0" prefWidth="124.0" style="-fx-background-color: #8D6E63;" text="AGREGAR" textAlignment="CENTER" textFill="WHITE">
                   <font>
                      <Font name="Roboto Black" size="18.0" />
                   </font>
