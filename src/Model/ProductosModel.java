@@ -76,6 +76,31 @@ public class ProductosModel {
         con.disconnect();
     }
     
+    public void modificarProducto(String material, String descripcion, String unidad, String precio, String proveedor, String cantidad, String id_producto) {
+        int id_material;
+        con = new dbConnection();
+        Connection reg = con.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps = reg.prepareStatement("UPDATE materiales SET material = ?, descripcion = ? WHERE id_material = (SELECT id_material FROM productos WHERE id_producto = ?)");
+            ps.setString(1, material);
+            ps.setString(2, descripcion);
+            ps.setString(3, id_producto);
+            ps.executeUpdate();
+            ps = reg.prepareStatement("UPDATE productos SET unidad = ?, precio = ?, id_proveedor = (SELECT id_proveedor FROM proveedores WHERE razon_social = ?), cantidad = ? WHERE id_producto = ?");
+            ps.setString(1, unidad);
+            ps.setString(2, precio);
+            ps.setString(3, proveedor);
+            ps.setString(4, cantidad);
+            ps.setString(5, id_producto);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        con.disconnect();
+    }
+    
     public ObservableList<String> getProveedores() {
         ArrayList<String> proveedores = new ArrayList<>();
         ObservableList<String> prov = FXCollections.observableList(proveedores);
@@ -96,4 +121,23 @@ public class ProductosModel {
         return prov;
     }
     
+    public String getDescripcion(String id_producto) {
+        con = new dbConnection();
+        Connection reg = con.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        String descripcion = "";
+        try {
+            ps = reg.prepareStatement("SELECT descripcion from materiales WHERE id_material = (SELECT id_material from productos WHERE id_producto = ?)");
+            ps.setString(1, id_producto);
+            rs = ps.executeQuery();
+            if(rs.next()) {
+                descripcion = rs.getString("descripcion");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        con.disconnect();
+        return descripcion;
+    }
 }
