@@ -3,10 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Model/Producto.java</file>
+            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Model/ProveedorModel.java</file>
+            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Controller/ProveedoresController.java</file>
+            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Controller/ProveedoresModalController.java</file>
+            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Controller/ClientesController.java</file>
             <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Controller/ProductosController.java</file>
             <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Controller/ProductosModalController.java</file>
             <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Model/ProductosModel.java</file>
+            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Model/ClientesModel.java</file>
+            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Model/Cliente.java</file>
+            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Model/Proveedor.java</file>
+            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Controller/ClientesModalController.java</file>
         </group>
     </open-files>
 </project-private>

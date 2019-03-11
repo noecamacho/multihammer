@@ -28,28 +28,30 @@ public class ProductosModalController implements Initializable {
     
     @FXML
     private StackPane root;
-    @FXML
     private JFXTextField txtMaterial;
-    @FXML
     private JFXTextArea txtDescripcion;
-    @FXML
     private JFXComboBox<String> txtUnidades;
-    @FXML
     private JFXTextField txtPrecio;
-    @FXML
     private JFXComboBox<String> txtProveedor;
-    @FXML
     private JFXTextField txtCantidad;
     @FXML
     private JFXButton btnAgregar;
+    @FXML
+    private JFXTextField txtRazonSocial;
+    @FXML
+    private JFXTextField txtDomicilio;
+    @FXML
+    private JFXTextField txtTelefono;
+    @FXML
+    private JFXTextField txtRFC;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setProveedores();
         setUnidades();
         txtMaterial.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\sa-zA-Z*")) {
-                txtMaterial.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+            if (!newValue.matches("\\sa-zA-ZñÑáéíóúÁÉÍÓÚ*")) {
+                txtMaterial.setText(newValue.replaceAll("[^\\sa-zA-ZñÑáéíóúÁÉÍÓÚ]", ""));
             }
         });
         txtPrecio.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -63,8 +65,8 @@ public class ProductosModalController implements Initializable {
             }
         });
         txtDescripcion.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\sa-zA-Z*")) {
-                txtDescripcion.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+            if (!newValue.matches("\\sa-zA-ZñÑáéíóúÁÉÍÓÚ*")) {
+                txtDescripcion.setText(newValue.replaceAll("[^\\sa-zA-ZñÑáéíóúÁÉÍÓÚ]", ""));
             }
         });
         btnAgregar.setOnAction((event) -> {
