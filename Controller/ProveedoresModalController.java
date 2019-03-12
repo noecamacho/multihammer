@@ -75,9 +75,9 @@ public class ProveedoresModalController implements Initializable {
         }
     }
 
-    public void modificar(String id_producto) {
+    public void modificar(String id_proveedor) {
         if (!txtRazonSocial.getText().equals("") && !txtDomicilio.getText().equals("") && !txtTelefono.getText().equals("") && !txtRFC.getText().equals("")) {
-            modelo.modificarProveedor(txtRazonSocial.getText(), txtDomicilio.getText(), txtTelefono.getText(), txtRFC.getText(), id_producto);
+            modelo.modificarProveedor(txtRazonSocial.getText(), txtDomicilio.getText(), txtTelefono.getText(), txtRFC.getText(), id_proveedor);
             Stage stage = (Stage) btnAgregar.getScene().getWindow();
             stage.close();
         } else {

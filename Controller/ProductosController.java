@@ -12,8 +12,10 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,10 +54,21 @@ public class ProductosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         createTable();
         createTableView();
+        searchField.focusedProperty().addListener((ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) -> {
+            if(newPropertyValue) {
+                disableButtons(true);
+            }
+        });
     }    
+    
+    public void disableButtons(boolean value) {
+        btnModificar.setDisable(value);
+        btnEliminar.setDisable(value);
+    }
     
     private Producto getLeadSelect() {
         TreeItem<Producto> selectedItem = (TreeItem<Producto>) table.getSelectionModel().getSelectedItem();
+        disableButtons(false);
         return selectedItem == null ? null : selectedItem.getValue();
     }
     
@@ -70,6 +83,12 @@ public class ProductosController implements Initializable {
     }
     
     public void createTable() {
+        
+//        table.focusedProperty().addListener((ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) -> {
+//            if(newPropertyValue) {
+//                disableButtons(false);
+//            }
+//        });
         
         table.getSelectionModel()
                 .selectedItemProperty()
@@ -108,6 +127,7 @@ public class ProductosController implements Initializable {
         TreeItem<Producto> root = new RecursiveTreeItem<>(tableInformation(), RecursiveTreeObject::getChildren);
         table.setRoot(root);
         table.setShowRoot(false);
+        disableButtons(true);
     }
 
     public ObservableList<Producto> tableInformation() {
@@ -133,7 +153,7 @@ public class ProductosController implements Initializable {
     }
 
     @FXML
-    private void btnModificarAction(ActionEvent event) throws IOException {
+    private void btnModificarAction() throws IOException {
         Stage stage = new Stage();
         FXMLLoader modal = new FXMLLoader(getClass().getResource("/View/ProductosModal.fxml"));
         Parent root = modal.load();
@@ -142,13 +162,13 @@ public class ProductosController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setTitle("Agregar Producto");
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node)event.getSource()).getScene().getWindow() );
+        stage.initOwner(((Node)btnModificar).getScene().getWindow());
         stage.showAndWait();
         createTableView();
     }
 
     @FXML
-    private void btnEliminarAction(ActionEvent event) {
+    private void btnEliminarAction() {
         if(dialogs.displayMessage((Stage) btnEliminar.getScene().getWindow(), "Eliminar producto", "¿Estás seguro que deseas eliminar este producto?", "Si", "No")) {
             if(this.selectedProduct.id_producto != null) {
                 modelo.eliminarProducto(this.selectedProduct.id_producto.get());
