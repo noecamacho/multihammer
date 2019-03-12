@@ -33,6 +33,16 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Platform.runLater(()->txtUser.requestFocus());
+        txtUser.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("a-zA-ZñÑ\\d*")) {
+                txtUser.setText(newValue.replaceAll("[^a-zA-ZñÑ\\d]*", ""));
+            }
+        });
+        txtPassword.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("a-zA-ZñÑ\\d*")) {
+                txtPassword.setText(newValue.replaceAll("[^a-zA-ZñÑ\\d]*", ""));
+            }
+        });
     }
     
     public void initModel(LoginModel model) {
