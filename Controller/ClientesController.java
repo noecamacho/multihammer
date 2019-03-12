@@ -38,8 +38,6 @@ public class ClientesController implements Initializable {
     @FXML
     private JFXButton btnModificar;
     @FXML
-    private JFXButton btnEliminar;
-    @FXML
     private JFXTreeTableView<Cliente> table;
     @FXML
     private JFXTextField searchField; 
@@ -51,10 +49,16 @@ public class ClientesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         createTable();
         createTableView();
+        disableButtons(true);
     }    
+    
+    public void disableButtons(boolean value) {
+        btnModificar.setDisable(value);
+    }
     
     private Cliente getLeadSelect() {
         TreeItem<Cliente> selectedItem = (TreeItem<Cliente>) table.getSelectionModel().getSelectedItem();
+        disableButtons(false);
         return selectedItem == null ? null : selectedItem.getValue();
     }
     
@@ -107,6 +111,7 @@ public class ClientesController implements Initializable {
         TreeItem<Cliente> root = new RecursiveTreeItem<>(tableInformation(), RecursiveTreeObject::getChildren);
         table.setRoot(root);
         table.setShowRoot(false);
+        disableButtons(true);
     }
 
     public ObservableList<Cliente> tableInformation() {

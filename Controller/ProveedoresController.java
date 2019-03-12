@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,10 +53,21 @@ public class ProveedoresController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         createTable();
         createTableView();
+        searchField.focusedProperty().addListener((ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) -> {
+            if(newPropertyValue) {
+                disableButtons(true);
+            }
+        });
     }    
+    
+    public void disableButtons(boolean value) {
+        btnModificar.setDisable(value);
+        btnEliminar.setDisable(value);
+    }
     
     private Proveedor getLeadSelect() {
         TreeItem<Proveedor> selectedItem = (TreeItem<Proveedor>) table.getSelectionModel().getSelectedItem();
+        disableButtons(false);
         return selectedItem == null ? null : selectedItem.getValue();
     }
     
@@ -103,6 +115,7 @@ public class ProveedoresController implements Initializable {
         TreeItem<Proveedor> root = new RecursiveTreeItem<>(tableInformation(), RecursiveTreeObject::getChildren);
         table.setRoot(root);
         table.setShowRoot(false);
+        disableButtons(true);
     }
 
     public ObservableList<Proveedor> tableInformation() {

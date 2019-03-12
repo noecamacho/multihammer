@@ -44,9 +44,14 @@ public class ClientesModalController implements Initializable {
                 txtTelefono.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
+//        txtRFC.textProperty().addListener((observable, oldValue, newValue) -> {
+//            if (!newValue.matches("[A-Z\\d]{12,13}")) {
+//                txtRFC.setText(newValue.replaceAll("[^A-Z\\d]{12,13}", ""));
+//            }
+//        });
         txtRFC.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("[A-Z\\d]{12,13}")) {
-                txtRFC.setText(newValue.replaceAll("[^A-Z\\d]{12,13}", ""));
+            if (!newValue.matches("[A-ZÑ&]{3,4}\\d{6}[A-V1-9][A-Z1-9][0-9A]")) {
+                txtRFC.setText(newValue.replaceAll("[^[A-ZÑ&]{3,4}\\d{6}[A-V1-9][A-Z1-9][0-9A]]", ""));
             }
         });
         txtNombre.textProperty().addListener((observable, oldValue, newValue) -> {
