@@ -3,11 +3,15 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="708.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductosController">
    <children>
-      <JFXTreeTableView fx:id="table" layoutX="258.0" layoutY="129.0" prefWidth="600.0" />
+      <JFXTreeTableView fx:id="table" layoutX="255.0" layoutY="145.0" prefHeight="400.0" prefWidth="603.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></JFXTreeTableView>
       <JFXButton fx:id="btnAgregar" layoutX="904.0" layoutY="145.0" onAction="#btnAgregarAction" text="Agregar" />
       <JFXButton fx:id="btnModificar" layoutX="900.0" layoutY="219.0" onAction="#btnModificarAction" text="Modificar" />
       <JFXButton fx:id="btnEliminar" layoutX="904.0" layoutY="281.0" onAction="#btnEliminarAction" text="Eliminar" />

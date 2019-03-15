@@ -14,12 +14,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductosModalController">
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductosModalController">
    <children>
      
-        <StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="708.0" prefWidth="710.0" style="-fx-background-color: FCCF31; -fx-border-radius: 6px; -fx-background-radius: 6px;" xmlns="http://javafx.com/javafx/2.2" xmlns:fx="http://javafx.com/fxml/1">
+                    <StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="688.0" prefWidth="710.0" style="-fx-background-color: FCCF31; -fx-border-radius: 6px; -fx-background-radius: 6px;">
 
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="610.0" prefHeight="736.0" prefWidth="610.0" spacing="40">
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="610.0" prefHeight="736.0" prefWidth="610.0" spacing="40">
                 <children>
                     <Label layoutX="110.0" layoutY="58.0" prefHeight="70.0" prefWidth="429.0" text="Agregar Productos">
                         <font>
@@ -69,7 +69,7 @@
                      <JFXComboBox fx:id="txtUnidades" focusColor="#8d6e63" prefHeight="25.0" prefWidth="310.0" promptText="Unidades de medida" />
                   </children>
                </GridPane>
-                    <JFXTextArea id="jfxTextArea" fx:id="txtDescripcion" focusColor="#8d6e63" labelFloat="true" maxWidth="621.0" minHeight="170.0" prefHeight="170.0" prefWidth="610.0" promptText="Descripción del producto">
+                    <JFXTextArea id="jfxTextArea" fx:id="txtDescripcion" focusColor="#8d6e63" labelFloat="true" maxWidth="621.0" minHeight="109.0" prefHeight="109.0" prefWidth="610.0" promptText="Descripción del producto">
                         <validators>
                             <RequiredFieldValidator message="We would love to get your feedback.">
                             </RequiredFieldValidator>

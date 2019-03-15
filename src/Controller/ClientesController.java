@@ -58,7 +58,11 @@ public class ClientesController implements Initializable {
     
     private Cliente getLeadSelect() {
         TreeItem<Cliente> selectedItem = (TreeItem<Cliente>) table.getSelectionModel().getSelectedItem();
-        disableButtons(false);
+        if(!selectedItem.getValue().id_cliente.get().equals("1")) {
+            disableButtons(false);
+        } else {
+            disableButtons(true);
+        }
         return selectedItem == null ? null : selectedItem.getValue();
     }
     
