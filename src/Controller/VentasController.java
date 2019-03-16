@@ -221,7 +221,7 @@ public class VentasController implements Initializable {
 
     @FXML
     private void btnVentaAction() {
-        if(productos.size() > 0) {
+        if(productos.size() > 0 && !txtCliente.getSelectionModel().isEmpty()) {
             if(dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Registrar venta", "¿Estás seguro que quieres concluir esta venta?", "Si", "No")) {
                 modelo.registrarVenta(productos, txtCliente.getSelectionModel().getSelectedItem().getId(), labelTotal.getText());
                 productos.clear();
@@ -230,7 +230,7 @@ public class VentasController implements Initializable {
                 labelTotal.setText("");
             }
         } else {
-            dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Es necesario ingresar por lo menos un producto para realizar una venta", "Ok");
+            dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Es necesario ingresar por lo menos un producto para realizar una venta y seleccionar un cliente", "Ok");
         }
     }
 
