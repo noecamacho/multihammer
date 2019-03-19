@@ -16,7 +16,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,17 +32,17 @@ public class ProductosModalController implements Initializable {
     @FXML
     private StackPane root;
     @FXML
-    private JFXTextField txtMaterial;
+    private TextField txtMaterial;
     @FXML
-    private JFXTextArea txtDescripcion;
+    private TextArea txtDescripcion;
     @FXML
-    private JFXComboBox<String> txtUnidades;
+    private ComboBox<String> txtUnidades;
     @FXML
-    private JFXTextField txtPrecio;
+    private TextField txtPrecio;
     @FXML
-    private JFXComboBox<String> txtProveedor;
+    private ComboBox<String> txtProveedor;
     @FXML
-    private JFXTextField txtCantidad;
+    private TextField txtCantidad;
     @FXML
     private JFXButton btnAgregar;
 

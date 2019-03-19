@@ -1,18 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXPasswordField?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <children>
-      <Label fx:id="labelWarning" layoutX="187.0" layoutY="315.0" prefHeight="17.0" prefWidth="219.0" />
-      <Label fx:id="labelWelcome" layoutX="247.0" layoutY="74.0" text="Multihammer" />
-      <JFXPasswordField fx:id="txtPassword" focusColor="#8d6e63" labelFloat="true" layoutX="196.0" layoutY="200.0" prefHeight="25.0" prefWidth="188.0" promptText="Contraseña" />
-      <JFXTextField fx:id="txtUser" focusColor="#8d6e63" labelFloat="true" layoutX="196.0" layoutY="143.0" prefHeight="25.0" prefWidth="188.0" promptText="Usuario" />
-      <JFXButton fx:id="btnLogin" layoutX="257.0" layoutY="268.0" onAction="#Login" style="-fx-background-color: #8D6E63;" text="Ingresar" textFill="WHITE" />
+      <ImageView fitHeight="768.0" fitWidth="1309.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/marble-bathroom.jpg" />
+         </image>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </ImageView>
+      <AnchorPane layoutX="916.0" prefHeight="768.0" prefWidth="450.0" style="-fx-background-color: #232E42; -fx-border-color: #1990F8; -fx-border-width: 0 0 0 1;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="125.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/multihammer-figure.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelWelcome" layoutX="148.0" layoutY="298.0" text="Inicio de Sesión" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Regular" size="24.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnLogin" layoutX="100.0" layoutY="553.0" onAction="#Login" prefHeight="31.0" prefWidth="267.0" style="-fx-background-color: #1990F8;" text="Iniciar Sesión" textFill="WHITE" />
+            <TextField fx:id="txtUser" layoutX="100.0" layoutY="397.0" prefHeight="31.0" prefWidth="267.0" style="-fx-background-color: #1E2840; -fx-border-color: #1990F8; -fx-text-fill: #1990F8;" />
+            <PasswordField fx:id="txtPassword" layoutX="100.0" layoutY="474.0" prefHeight="31.0" prefWidth="267.0" style="-fx-background-color: #1E2840; -fx-border-color: #1990F8; -fx-text-fill: #1990F8;" />
+            <Label layoutX="100.0" layoutY="363.0" text="Usuario" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Light" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="100.0" layoutY="442.0" text="Contraseña" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Light" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="55.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/logo_multihammer_blanco.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="75.0" layoutY="310.0" text="Controla tu inventario" textFill="WHITE">
+         <font>
+            <Font name="Roboto Light" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="75.0" layoutY="391.0" text="Conecta tu espacio" textFill="WHITE">
+         <font>
+            <Font name="Roboto Bold" size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

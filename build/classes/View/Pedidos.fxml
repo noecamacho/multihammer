@@ -5,17 +5,19 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="708.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PedidosController">
    <children>
-      <JFXTreeTableView fx:id="table" layoutX="283.0" layoutY="143.0" prefHeight="400.0" prefWidth="803.0">
+      <JFXTreeTableView fx:id="table" layoutX="136.0" layoutY="102.0" prefHeight="552.0" prefWidth="1104.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets></JFXTreeTableView>
-      <JFXTextField fx:id="searchField" layoutX="849.0" layoutY="93.0" prefHeight="25.0" prefWidth="234.0" promptText="Buscar" />
-      <JFXDatePicker fx:id="txtFechaFinal" layoutX="453.0" layoutY="93.0" prefHeight="31.0" prefWidth="132.0" promptText="Fecha Final" />
-      <JFXDatePicker fx:id="txtFechaInicial" layoutX="283.0" layoutY="93.0" prefHeight="31.0" prefWidth="132.0" promptText="Fecha Inicial" />
-      <JFXButton fx:id="btnFiltrar" buttonType="RAISED" layoutX="626.0" layoutY="93.0" onAction="#btnFiltrarAction" text="Filtrar" />
+      <JFXTextField fx:id="searchField" layoutX="906.0" layoutY="44.0" prefHeight="31.0" prefWidth="333.0" promptText="Buscar" />
+      <JFXDatePicker fx:id="txtFechaFinal" defaultColor="WHITE" layoutX="515.0" layoutY="44.0" prefHeight="31.0" prefWidth="200.0" promptText="Fecha Final" />
+      <JFXDatePicker fx:id="txtFechaInicial" defaultColor="WHITE" layoutX="283.0" layoutY="44.0" prefHeight="31.0" prefWidth="200.0" promptText="Fecha Inicial" />
+      <JFXButton fx:id="btnFiltrar" buttonType="RAISED" layoutX="760.0" layoutY="44.0" onAction="#btnFiltrarAction" prefWidth="100.0" text="Filtrar" />
+      <Label layoutX="142.0" layoutY="49.0" text="Pedidos" />
    </children>
 </AnchorPane>

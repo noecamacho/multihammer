@@ -1,11 +1,151 @@
-.menuBtn {
+.root {
+    -fx-font-family: "Roboto";
+}
+
+.label {
     -fx-text-fill: white;
+    -fx-size: 28;
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-background-color: #1990F8;
+}
+
+.menuBtn {
+    -fx-text-fill: #70889E;
+    -fx-alignment: CENTER_LEFT;
     -jfx-button-type: RAISED;
     -fx-pref-width: 120;
-    -fx-background-color:  transparent;
+    -fx-pref-height: 50;
+    -fx-background-color:   #232E42;
 }
 
 .menuBtn:hover {
-    -fx-background-color:  #ce8602;
+    -fx-text-fill:  #1990F8;
+    -fx-background-color:  #1F2A3C;
     -fx-cursor: hand;
+    -fx-border-color:  #1990F8;
+    -fx-border-width: 0 0 0 10;
+    -fx-font-family: "Roboto Bold";
+}
+
+.jfx-hamburger StackPane {
+    -fx-background-color: #70889E;
+}
+
+.tree-table-view {
+    -fx-background-color: #2F3B53;
+    -fx-border-width: 0 0 0 0;
+}
+
+.tree-table-view .column-header {
+    -fx-border-width: 0 0 0 0;
+}
+
+.tree-table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.tree-table-view .tree-table-cell {
+    -fx-font-size: 18;
+    -fx-background-color: #2F3B53;
+    -fx-border-color: #1F2A3C;
+    -fx-border-width: 0 0 1 0;
+    -fx-alignment: CENTER;
+    -fx-text-fill: #70889E;
+    /*-fx-pref-height: 300;*/
+}
+
+.tree-table-view:focused .tree-table-row-cell:selected .tree-table-cell{
+    -fx-background-color:  #1F3041;
+    -fx-text-fill: #1990F8;
+}
+
+.text-field {
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+}
+
+.text-field:focused {
+    -fx-border-color: #1990F8;
+    -fx-border-width: 1 1 1 1;
+}
+
+.combo-box:focused {
+    -fx-border-color: #1990F8;
+    -fx-border-width: 1 1 1 1;
+}
+
+/*.combo-box-base {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+}*/
+
+.combo-box .list-view .list-cell {
+    -fx-text-fill: black; 
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: white; 
+}
+
+.custom-color-picker{
+    -jfx-default-color: white;
+}
+
+.jfx-date-picker .month-year-pane{
+    -fx-background-color:  #1990F8;
+    -fx-border-width: 0 0 0 0;
+}
+
+.date-picker-popup .right-button,
+.date-picker-popup .left-button{
+    -fx-background-color: transparent;
+}
+
+.axis-label {
+   -fx-text-fill: white; 
+}
+
+.axis {
+    -fx-tick-label-fill: white;
+}
+
+.chart-pie-label-line {
+    -fx-stroke:  #1990F8;
+    -fx-fill:  #1990F8;
+}
+ 
+.chart-pie-label {
+    -fx-fill: white;
+} 
+.chart-legend {
+   -fx-background-color:  transparent;
+   /*-fx-stroke: white;*/
+}
+
+.jfx-toggle-button {
+    -jfx-toggle-color: #1990F8;
+    -fx-text-fill: white;
+    -fx-pref-width: 200;
+    -jfx-size: 13;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.text-area *.content {
+    -fx-background-color:  #1F3041;
+    -fx-text-fill: white;
+}
+
+.text-area {
+    -fx-border-width: 0 0 0 0;
+    -fx-text-box-border: transparent;
+    -fx-text-fill: white;
+}
+
+.text-area:focused {
+    -fx-border-color: #1990F8;
+    -fx-border-width: 1 1 1 1;
 }

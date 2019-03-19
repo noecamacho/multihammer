@@ -131,23 +131,23 @@ public class VentasController implements Initializable {
         });
         
         JFXTreeTableColumn<Venta, String> material = new JFXTreeTableColumn("Material");
-        material.setPrefWidth(120);
+        material.setPrefWidth(250);
         material.setCellValueFactory((TreeTableColumn.CellDataFeatures<Venta, String> param) -> param.getValue().getValue().material);
 
         JFXTreeTableColumn<Venta, String> unidad = new JFXTreeTableColumn("Unidad");
-        unidad.setPrefWidth(120);
+        unidad.setPrefWidth(200);
         unidad.setCellValueFactory((TreeTableColumn.CellDataFeatures<Venta, String> param) -> param.getValue().getValue().unidad);
 
         JFXTreeTableColumn<Venta, String> cantidad = new JFXTreeTableColumn("Cantidad");
-        cantidad.setPrefWidth(120);
+        cantidad.setPrefWidth(200);
         cantidad.setCellValueFactory((TreeTableColumn.CellDataFeatures<Venta, String> param) -> param.getValue().getValue().cantidad);
 
         JFXTreeTableColumn<Venta, String> precio = new JFXTreeTableColumn("Precio");
-        precio.setPrefWidth(120);
+        precio.setPrefWidth(200);
         precio.setCellValueFactory((TreeTableColumn.CellDataFeatures<Venta, String> param) -> param.getValue().getValue().precio);
 
         JFXTreeTableColumn<Venta, String> total = new JFXTreeTableColumn("Total");
-        total.setPrefWidth(120);
+        total.setPrefWidth(300);
         total.setCellValueFactory((TreeTableColumn.CellDataFeatures<Venta, String> param) -> param.getValue().getValue().total);
 
         table.getColumns().setAll(material, unidad, cantidad, precio, total);
@@ -244,6 +244,7 @@ public class VentasController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader modal = new FXMLLoader(getClass().getResource("/View/ClientesModal.fxml"));
         Parent root = modal.load();
+        root.getStylesheets().add("/Resources/main.css");
         stage.setScene(new Scene(root));
         stage.setTitle("Agregar Clientes");
         stage.initModality(Modality.WINDOW_MODAL);

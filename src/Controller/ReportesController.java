@@ -61,15 +61,15 @@ public class ReportesController implements Initializable {
     public void createTable() {
         
         JFXTreeTableColumn<ReporteClientes, String> nombre = new JFXTreeTableColumn("Nombre");
-        nombre.setPrefWidth(300);
+        nombre.setPrefWidth(350);
         nombre.setCellValueFactory((TreeTableColumn.CellDataFeatures<ReporteClientes, String> param) -> param.getValue().getValue().getNombre());
 
         JFXTreeTableColumn<ReporteClientes, String> num_ventas = new JFXTreeTableColumn("Número de Ventas");
-        num_ventas.setPrefWidth(200);
+        num_ventas.setPrefWidth(300);
         num_ventas.setCellValueFactory((TreeTableColumn.CellDataFeatures<ReporteClientes, String> param) -> param.getValue().getValue().getNum_ventas());
 
         JFXTreeTableColumn<ReporteClientes, String> total = new JFXTreeTableColumn("Total");
-        total.setPrefWidth(200);
+        total.setPrefWidth(350);
         total.setCellValueFactory((TreeTableColumn.CellDataFeatures<ReporteClientes, String> param) -> param.getValue().getValue().getTotal());
 
         table.getColumns().setAll(nombre, num_ventas, total);
@@ -94,23 +94,23 @@ public class ReportesController implements Initializable {
     public void createTable1() {
         
         JFXTreeTableColumn<ReporteProductos, String> material = new JFXTreeTableColumn("Material");
-        material.setPrefWidth(150);
+        material.setPrefWidth(200);
         material.setCellValueFactory((TreeTableColumn.CellDataFeatures<ReporteProductos, String> param) -> param.getValue().getValue().getMaterial());
 
         JFXTreeTableColumn<ReporteProductos, String> unidad = new JFXTreeTableColumn("Unidad");
-        unidad.setPrefWidth(150);
+        unidad.setPrefWidth(200);
         unidad.setCellValueFactory((TreeTableColumn.CellDataFeatures<ReporteProductos, String> param) -> param.getValue().getValue().getUnidad());
         
         JFXTreeTableColumn<ReporteProductos, String> cantidad = new JFXTreeTableColumn("Cantidad");
-        cantidad.setPrefWidth(100);
+        cantidad.setPrefWidth(200);
         cantidad.setCellValueFactory((TreeTableColumn.CellDataFeatures<ReporteProductos, String> param) -> param.getValue().getValue().getCantidad());
         
         JFXTreeTableColumn<ReporteProductos, String> precio = new JFXTreeTableColumn("Precio");
-        precio.setPrefWidth(150);
+        precio.setPrefWidth(200);
         precio.setCellValueFactory((TreeTableColumn.CellDataFeatures<ReporteProductos, String> param) -> param.getValue().getValue().getPrecio());
 
         JFXTreeTableColumn<ReporteProductos, String> total = new JFXTreeTableColumn("Total");
-        total.setPrefWidth(150);
+        total.setPrefWidth(200);
         total.setCellValueFactory((TreeTableColumn.CellDataFeatures<ReporteProductos, String> param) -> param.getValue().getValue().getTotal());
 
         table1.getColumns().setAll(material, unidad, cantidad, precio, total);
@@ -139,15 +139,15 @@ public class ReportesController implements Initializable {
         id.setCellValueFactory((TreeTableColumn.CellDataFeatures<Pedidos, String> param) -> param.getValue().getValue().id_pedido);
 
         JFXTreeTableColumn<Pedidos, String> nombre = new JFXTreeTableColumn("Nombre");
-        nombre.setPrefWidth(250);
+        nombre.setPrefWidth(350);
         nombre.setCellValueFactory((TreeTableColumn.CellDataFeatures<Pedidos, String> param) -> param.getValue().getValue().nombre);
 
         JFXTreeTableColumn<Pedidos, String> fecha = new JFXTreeTableColumn("Fecha");
-        fecha.setPrefWidth(200);
+        fecha.setPrefWidth(250);
         fecha.setCellValueFactory((TreeTableColumn.CellDataFeatures<Pedidos, String> param) -> param.getValue().getValue().fecha);
 
         JFXTreeTableColumn<Pedidos, String> total = new JFXTreeTableColumn("Total");
-        total.setPrefWidth(150);
+        total.setPrefWidth(300);
         total.setCellValueFactory((TreeTableColumn.CellDataFeatures<Pedidos, String> param) -> param.getValue().getValue().total);
 
         table2.getColumns().setAll(id, nombre, fecha, total);

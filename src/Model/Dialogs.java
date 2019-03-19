@@ -14,8 +14,12 @@ public class Dialogs {
         alert.initModality(Modality.APPLICATION_MODAL);
         alert.setOverlayClose(false);
         JFXDialogLayout layout = new JFXDialogLayout();
-        layout.setHeading(new Label(header));
-        layout.setBody(new Label(body));
+        Label Header = new Label(header);
+        layout.setHeading(Header);
+        Header.setStyle("-fx-text-fill:black");
+        Label Body = new Label(body);
+        Body.setStyle("-fx-text-fill:black");
+        layout.setBody(Body);
         JFXButton closeButton = new JFXButton(btn1);
         closeButton.setOnAction(event -> alert.hideWithAnimation());
         layout.setActions(closeButton);
@@ -29,8 +33,12 @@ public class Dialogs {
         alert.initModality(Modality.APPLICATION_MODAL);
         alert.setOverlayClose(false);
         JFXDialogLayout layout = new JFXDialogLayout();
-        layout.setHeading(new Label(header));
-        layout.setBody(new Label(body));
+        Label Header = new Label(header);
+        layout.setHeading(Header);
+        Header.setStyle("-fx-text-fill:black");
+        Label Body = new Label(body);
+        Body.setStyle("-fx-text-fill:black");
+        layout.setBody(Body);
         JFXButton firstButton = new JFXButton(btn1);
         firstButton.setOnAction((ActionEvent event) -> {
             alert.hideWithAnimation();
