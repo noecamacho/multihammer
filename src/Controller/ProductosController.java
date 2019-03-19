@@ -101,23 +101,23 @@ public class ProductosController implements Initializable {
         id.setCellValueFactory((TreeTableColumn.CellDataFeatures<Producto, String> param) -> param.getValue().getValue().id_producto);
 
         JFXTreeTableColumn<Producto, String> material = new JFXTreeTableColumn("Material");
-        material.setPrefWidth(100);
+        material.setPrefWidth(200);
         material.setCellValueFactory((TreeTableColumn.CellDataFeatures<Producto, String> param) -> param.getValue().getValue().material);
 
         JFXTreeTableColumn<Producto, String> unidad = new JFXTreeTableColumn("Unidad");
-        unidad.setPrefWidth(100);
+        unidad.setPrefWidth(200);
         unidad.setCellValueFactory((TreeTableColumn.CellDataFeatures<Producto, String> param) -> param.getValue().getValue().unidad);
 
         JFXTreeTableColumn<Producto, String> precio = new JFXTreeTableColumn("Precio");
-        precio.setPrefWidth(100);
+        precio.setPrefWidth(200);
         precio.setCellValueFactory((TreeTableColumn.CellDataFeatures<Producto, String> param) -> param.getValue().getValue().precio);
 
         JFXTreeTableColumn<Producto, String> cantidad = new JFXTreeTableColumn("Cantidad");
-        cantidad.setPrefWidth(100);
+        cantidad.setPrefWidth(200);
         cantidad.setCellValueFactory((TreeTableColumn.CellDataFeatures<Producto, String> param) -> param.getValue().getValue().cantidad);
 
         JFXTreeTableColumn<Producto, String> proveedor = new JFXTreeTableColumn("Proveedor");
-        proveedor.setPrefWidth(100);
+        proveedor.setPrefWidth(250);
         proveedor.setCellValueFactory((TreeTableColumn.CellDataFeatures<Producto, String> param) -> param.getValue().getValue().proveedor);
 
         table.getColumns().setAll(id, material, unidad, precio, cantidad, proveedor);
@@ -144,6 +144,7 @@ public class ProductosController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader modal = new FXMLLoader(getClass().getResource("/View/ProductosModal.fxml"));
         Parent root = modal.load();
+        root.getStylesheets().add("/Resources/main.css");
         stage.setScene(new Scene(root));
         stage.setTitle("Agregar Producto");
         stage.initModality(Modality.WINDOW_MODAL);
@@ -157,6 +158,7 @@ public class ProductosController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader modal = new FXMLLoader(getClass().getResource("/View/ProductosModal.fxml"));
         Parent root = modal.load();
+        root.getStylesheets().add("/Resources/main.css");
         ProductosModalController pmc = modal.getController();
         pmc.setValuesToModify(selectedProduct.material.get(), selectedProduct.unidad.get(), selectedProduct.precio.get(), selectedProduct.proveedor.get(), selectedProduct.cantidad.get(), selectedProduct.id_producto.get());
         stage.setScene(new Scene(root));

@@ -13,8 +13,8 @@
 <AnchorPane id="AnchorPane" prefHeight="708.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EstadisticasController">
    <children>
       <JFXComboBox fx:id="txtReporte" layoutX="361.0" layoutY="50.0" prefHeight="31.0" prefWidth="159.0" promptText="Tipo de estadística" />
-      <JFXDatePicker fx:id="txtFechaInicial" layoutX="592.0" layoutY="50.0" prefHeight="31.0" prefWidth="205.0" promptText="Fecha Inicial" />
-      <JFXDatePicker fx:id="txtFechaFinal" layoutX="859.0" layoutY="50.0" promptText="Fecha Final" />
+      <JFXDatePicker fx:id="txtFechaInicial" defaultColor="WHITE" layoutX="592.0" layoutY="50.0" prefHeight="31.0" prefWidth="205.0" promptText="Fecha Inicial" />
+      <JFXDatePicker fx:id="txtFechaFinal" defaultColor="WHITE" layoutX="859.0" layoutY="50.0" promptText="Fecha Final" />
       <PieChart fx:id="PieChart" layoutX="308.0" layoutY="111.0" prefHeight="550.0" prefWidth="780.0" />
       <LineChart fx:id="LineChart" animated="false" layoutX="308.0" layoutY="111.0" prefHeight="550.0" prefWidth="780.0">
         <xAxis>

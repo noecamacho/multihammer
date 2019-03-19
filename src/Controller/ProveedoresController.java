@@ -92,19 +92,19 @@ public class ProveedoresController implements Initializable {
         id.setCellValueFactory((TreeTableColumn.CellDataFeatures<Proveedor, String> param) -> param.getValue().getValue().id_proveedor);
 
         JFXTreeTableColumn<Proveedor, String> razonSocial = new JFXTreeTableColumn("Razón Social");
-        razonSocial.setPrefWidth(100);
+        razonSocial.setPrefWidth(250);
         razonSocial.setCellValueFactory((TreeTableColumn.CellDataFeatures<Proveedor, String> param) -> param.getValue().getValue().razon_social);
 
         JFXTreeTableColumn<Proveedor, String> domicilio = new JFXTreeTableColumn("Domicilio");
-        domicilio.setPrefWidth(100);
+        domicilio.setPrefWidth(300);
         domicilio.setCellValueFactory((TreeTableColumn.CellDataFeatures<Proveedor, String> param) -> param.getValue().getValue().domicilio);
 
         JFXTreeTableColumn<Proveedor, String> telefono = new JFXTreeTableColumn("Teléfono");
-        telefono.setPrefWidth(100);
+        telefono.setPrefWidth(200);
         telefono.setCellValueFactory((TreeTableColumn.CellDataFeatures<Proveedor, String> param) -> param.getValue().getValue().telefono);
 
         JFXTreeTableColumn<Proveedor, String> rfc = new JFXTreeTableColumn("RFC");
-        rfc.setPrefWidth(100);
+        rfc.setPrefWidth(250);
         rfc.setCellValueFactory((TreeTableColumn.CellDataFeatures<Proveedor, String> param) -> param.getValue().getValue().rfc);
 
 
@@ -132,6 +132,7 @@ public class ProveedoresController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader modal = new FXMLLoader(getClass().getResource("/View/ProveedoresModal.fxml"));
         Parent root = modal.load();
+        root.getStylesheets().add("/Resources/main.css");
         stage.setScene(new Scene(root));
         stage.setTitle("Agregar Producto");
         stage.initModality(Modality.WINDOW_MODAL);
@@ -145,6 +146,7 @@ public class ProveedoresController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader modal = new FXMLLoader(getClass().getResource("/View/ProveedoresModal.fxml"));
         Parent root = modal.load();
+        root.getStylesheets().add("/Resources/main.css");
         ProveedoresModalController pmc = modal.getController();
         pmc.setValuesToModify(selectedProveedor.id_proveedor.get(), selectedProveedor.domicilio.get(), selectedProveedor.rfc.get(), selectedProveedor.razon_social.get(), selectedProveedor.telefono.get());
         stage.setScene(new Scene(root));

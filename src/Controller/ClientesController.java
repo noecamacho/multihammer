@@ -88,23 +88,23 @@ public class ClientesController implements Initializable {
         id.setCellValueFactory((TreeTableColumn.CellDataFeatures<Cliente, String> param) -> param.getValue().getValue().id_cliente);
 
         JFXTreeTableColumn<Cliente, String> nombre = new JFXTreeTableColumn("Nombre");
-        nombre.setPrefWidth(100);
+        nombre.setPrefWidth(200);
         nombre.setCellValueFactory((TreeTableColumn.CellDataFeatures<Cliente, String> param) -> param.getValue().getValue().nombre);
 
         JFXTreeTableColumn<Cliente, String> apellido = new JFXTreeTableColumn("Apellido");
-        apellido.setPrefWidth(100);
+        apellido.setPrefWidth(200);
         apellido.setCellValueFactory((TreeTableColumn.CellDataFeatures<Cliente, String> param) -> param.getValue().getValue().apellido);
 
         JFXTreeTableColumn<Cliente, String> domicilio = new JFXTreeTableColumn("Domicilio");
-        domicilio.setPrefWidth(100);
+        domicilio.setPrefWidth(250);
         domicilio.setCellValueFactory((TreeTableColumn.CellDataFeatures<Cliente, String> param) -> param.getValue().getValue().domicilio);
 
         JFXTreeTableColumn<Cliente, String> telefono = new JFXTreeTableColumn("Teléfono");
-        telefono.setPrefWidth(100);
+        telefono.setPrefWidth(175);
         telefono.setCellValueFactory((TreeTableColumn.CellDataFeatures<Cliente, String> param) -> param.getValue().getValue().telefono);
 
         JFXTreeTableColumn<Cliente, String> rfc = new JFXTreeTableColumn("RFC");
-        rfc.setPrefWidth(100);
+        rfc.setPrefWidth(175);
         rfc.setCellValueFactory((TreeTableColumn.CellDataFeatures<Cliente, String> param) -> param.getValue().getValue().rfc);
 
 
@@ -132,6 +132,7 @@ public class ClientesController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader modal = new FXMLLoader(getClass().getResource("/View/ClientesModal.fxml"));
         Parent root = modal.load();
+        root.getStylesheets().add("/Resources/main.css");
         stage.setScene(new Scene(root));
         stage.setTitle("Agregar Clientes");
         stage.initModality(Modality.WINDOW_MODAL);
@@ -145,6 +146,7 @@ public class ClientesController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader modal = new FXMLLoader(getClass().getResource("/View/ClientesModal.fxml"));
         Parent root = modal.load();
+        root.getStylesheets().add("/Resources/main.css");
         ClientesModalController pmc = modal.getController();
         pmc.setValuesToModify(selectedCliente.id_cliente.get(), selectedCliente.domicilio.get(), selectedCliente.rfc.get(), selectedCliente.nombre.get(),selectedCliente.apellido.get(), selectedCliente.telefono.get());
         stage.setScene(new Scene(root));

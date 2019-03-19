@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.StageStyle;
 
 public class Multihammer extends Application {
     
@@ -21,6 +22,7 @@ public class Multihammer extends Application {
             loginController.initModel(loginModel);
             
             Scene scene = new Scene(root);
+//            primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Login");
             primaryStage.show();

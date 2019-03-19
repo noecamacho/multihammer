@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -22,15 +23,15 @@ public class ClientesModalController implements Initializable {
     @FXML
     private Label labelHeader;
     @FXML
-    private JFXTextField txtNombre;
+    private TextField txtNombre;
     @FXML
-    private JFXTextField txtApellido;
+    private TextField txtApellido;
     @FXML
-    private JFXTextField txtDomicilio;
+    private TextField txtDomicilio;
     @FXML
-    private JFXTextField txtTelefono;
+    private TextField txtTelefono;
     @FXML
-    private JFXTextField txtRFC;
+    private TextField txtRFC;
     @FXML
     private JFXButton btnAgregar;
 

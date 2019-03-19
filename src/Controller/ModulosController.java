@@ -76,7 +76,7 @@ public class ModulosController implements Initializable {
 //        id.setOnEditCommit((TreeTableColumn.CellEditEvent<Perfil, String> t)-> t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().id.set(t.getNewValue()));
 
         JFXTreeTableColumn<Perfil, String> name = new JFXTreeTableColumn("Nombre");
-        name.setPrefWidth(100);
+        name.setPrefWidth(150);
         name.setCellValueFactory((TreeTableColumn.CellDataFeatures<Perfil, String> param) -> param.getValue().getValue().name);
 //        name.setCellFactory((TreeTableColumn<Perfil, String> param) -> new GenericEditableTreeTableCell<>(new TextFieldEditorBuilder()));
 //        name.setOnEditCommit((TreeTableColumn.CellEditEvent<Perfil, String> t)-> t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().name.set(t.getNewValue()));

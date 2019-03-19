@@ -75,6 +75,7 @@ public class PedidosController implements Initializable {
                         Stage stage = new Stage();
                         FXMLLoader modal = new FXMLLoader(getClass().getResource("/View/DetalleVentas.fxml"));
                         Parent root = modal.load();
+                        root.getStylesheets().add("/Resources/main.css");
                         DetalleVentasController dvc = modal.getController();
                         dvc.setValues(rowData.getId_pedido().get(), rowData.getNombre().get(), rowData.getFecha().get(), rowData.getTotal().get());
                         stage.setScene(new Scene(root));
@@ -94,15 +95,15 @@ public class PedidosController implements Initializable {
         searchField.textProperty().addListener(setupSearchField(table));
 
         JFXTreeTableColumn<Pedidos, String> id = new JFXTreeTableColumn("ID");
-        id.setPrefWidth(100);
+        id.setPrefWidth(200);
         id.setCellValueFactory((TreeTableColumn.CellDataFeatures<Pedidos, String> param) -> param.getValue().getValue().id_pedido);
 
         JFXTreeTableColumn<Pedidos, String> nombre = new JFXTreeTableColumn("Nombre");
-        nombre.setPrefWidth(300);
+        nombre.setPrefWidth(350);
         nombre.setCellValueFactory((TreeTableColumn.CellDataFeatures<Pedidos, String> param) -> param.getValue().getValue().nombre);
 
         JFXTreeTableColumn<Pedidos, String> fecha = new JFXTreeTableColumn("Fecha");
-        fecha.setPrefWidth(200);
+        fecha.setPrefWidth(350);
         fecha.setCellValueFactory((TreeTableColumn.CellDataFeatures<Pedidos, String> param) -> param.getValue().getValue().fecha);
 
         JFXTreeTableColumn<Pedidos, String> total = new JFXTreeTableColumn("Total");

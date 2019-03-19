@@ -8,26 +8,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ReportesController">
    <children>
-      <JFXTreeTableView fx:id="table" layoutX="342.0" layoutY="164.0" prefHeight="400.0" prefWidth="703.0">
+      <JFXTreeTableView fx:id="table" layoutX="217.0" layoutY="112.0" prefHeight="500.0" prefWidth="1004.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </JFXTreeTableView>
-      <Label fx:id="labelTotal" layoutX="1008.0" layoutY="588.0" text="Total:" />
-      <JFXComboBox fx:id="txtReporte" layoutX="342.0" layoutY="107.0" prefHeight="31.0" prefWidth="159.0" promptText="Tipo de reporte" />
-      <JFXDatePicker fx:id="txtFechaInicial" layoutX="573.0" layoutY="107.0" prefHeight="31.0" prefWidth="205.0" promptText="Fecha Inicial" />
-      <JFXDatePicker fx:id="txtFechaFinal" layoutX="840.0" layoutY="107.0" promptText="Fecha Final" />
-      <JFXButton fx:id="btnReporte" buttonType="RAISED" layoutX="1103.0" layoutY="164.0" onAction="#btnReporteAction" text="Generar Reporte" />
-      <JFXButton fx:id="btnPDF" layoutX="1117.0" layoutY="224.0" onAction="#btnPDFAction" text="Generar PDF" />
-      <JFXTreeTableView fx:id="table1" layoutX="342.0" layoutY="164.0" prefHeight="400.0" prefWidth="703.0">
+      <Label fx:id="labelTotal" layoutX="1184.0" layoutY="622.0" text="Total:" />
+      <JFXComboBox fx:id="txtReporte" layoutX="217.0" layoutY="54.0" prefHeight="31.0" prefWidth="200.0" promptText="Tipo de reporte" />
+      <JFXDatePicker fx:id="txtFechaInicial" defaultColor="WHITE" layoutX="464.0" layoutY="54.0" prefHeight="31.0" prefWidth="240.0" promptText="Fecha Inicial" />
+      <JFXDatePicker fx:id="txtFechaFinal" defaultColor="WHITE" layoutX="743.0" layoutY="54.0" prefHeight="31.0" prefWidth="240.0" promptText="Fecha Final" />
+      <JFXButton fx:id="btnReporte" buttonType="RAISED" layoutX="1021.0" layoutY="54.0" onAction="#btnReporteAction" prefWidth="200.0" text="Generar Reporte" />
+      <JFXButton fx:id="btnPDF" layoutX="217.0" layoutY="617.0" onAction="#btnPDFAction" prefHeight="31.0" prefWidth="200.0" text="Generar PDF" />
+      <JFXTreeTableView fx:id="table1" layoutX="217.0" layoutY="112.0" prefHeight="500.0" prefWidth="1004.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </JFXTreeTableView>
-      <JFXTreeTableView fx:id="table2" layoutX="342.0" layoutY="164.0" prefHeight="400.0" prefWidth="703.0">
+      <JFXTreeTableView fx:id="table2" layoutX="217.0" layoutY="112.0" prefHeight="500.0" prefWidth="1004.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>

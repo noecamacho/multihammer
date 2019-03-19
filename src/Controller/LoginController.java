@@ -19,14 +19,16 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 // FXML Clase del Controlador "Login"
 public class LoginController implements Initializable {
-    @FXML JFXTextField txtUser;
-    @FXML JFXPasswordField txtPassword;
+    @FXML TextField txtUser;
+    @FXML PasswordField txtPassword;
     private LoginModel model;
     
     // Inicializa la clase del controlador
