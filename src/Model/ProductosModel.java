@@ -48,7 +48,8 @@ public class ProductosModel {
         con.disconnect();
     }
     
-    public void agregarProducto(String material, String descripcion, String unidad, String precio, String proveedor, String cantidad) {
+    public String agregarProducto(String material, String descripcion, String unidad, String precio, String proveedor, String cantidad) {
+        String message = "Producto y material agregado exitosamente";
         int id_material;
         con = new dbConnection();
         Connection reg = con.getConnection();
@@ -62,21 +63,31 @@ public class ProductosModel {
             rs = ps.getGeneratedKeys();
             rs.next();
             id_material = rs.getInt(1);
-            System.out.println(id_material);
-            ps = reg.prepareStatement("INSERT INTO productos (id_material, unidad, precio, id_proveedor, cantidad) VALUES (?,?,?,(SELECT proveedores.`id_proveedor` FROM proveedores WHERE proveedores.`razon_social` = ?),?)");
+            ps = reg.prepareStatement("SELECT * from productos WHERE id_material = ? AND unidad = ?");
             ps.setInt(1, id_material);
             ps.setString(2, unidad);
-            ps.setString(3, precio);
-            ps.setString(4, proveedor);
-            ps.setString(5, cantidad);
-            ps.executeUpdate();
+            rs = ps.executeQuery();
+            if(!rs.next()) {
+                ps = reg.prepareStatement("INSERT INTO productos (id_material, unidad, precio, id_proveedor, cantidad) VALUES (?,?,?,(SELECT proveedores.`id_proveedor` FROM proveedores WHERE proveedores.`razon_social` = ?),?)");
+                ps.setInt(1, id_material);
+                ps.setString(2, unidad);
+                ps.setString(3, precio);
+                ps.setString(4, proveedor);
+                ps.setString(5, cantidad);
+                ps.executeUpdate();
+            } else {
+                message = "Un material no puede tener más de una vez la misma unidad";
+            }
         } catch (SQLException ex) {
             System.out.println(ex);
+            message = "El nombre del material no se puede repetir";
         }
         con.disconnect();
+        return message;
     }
     
-    public void modificarProducto(String material, String descripcion, String unidad, String precio, String proveedor, String cantidad, String id_producto) {
+    public String modificarProducto(String material, String descripcion, String unidad, String precio, String proveedor, String cantidad, String id_producto) {
+        String message = "Producto y material modificado exitosamente";
         int id_material;
         con = new dbConnection();
         Connection reg = con.getConnection();
@@ -88,17 +99,29 @@ public class ProductosModel {
             ps.setString(2, descripcion);
             ps.setString(3, id_producto);
             ps.executeUpdate();
-            ps = reg.prepareStatement("UPDATE productos SET unidad = ?, precio = ?, id_proveedor = (SELECT id_proveedor FROM proveedores WHERE razon_social = ?), cantidad = ? WHERE id_producto = ?");
-            ps.setString(1, unidad);
-            ps.setString(2, precio);
-            ps.setString(3, proveedor);
-            ps.setString(4, cantidad);
-            ps.setString(5, id_producto);
-            ps.executeUpdate();
+            ps = reg.prepareStatement("SELECT * from productos WHERE id_material = (SELECT id_material FROM productos WHERE id_producto = ?) AND unidad = ?");
+            ps.setString(1, id_producto);
+            ps.setString(2, unidad);
+            rs = ps.executeQuery();
+            // Almacena confirmación de que existe un registro con la misma unidad
+            boolean aux = rs.next();
+            if(!aux || rs.getString("id_producto").equals(id_producto)) {
+                ps = reg.prepareStatement("UPDATE productos SET unidad = ?, precio = ?, id_proveedor = (SELECT id_proveedor FROM proveedores WHERE razon_social = ?), cantidad = ? WHERE id_producto = ?");
+                ps.setString(1, unidad);
+                ps.setString(2, precio);
+                ps.setString(3, proveedor);
+                ps.setString(4, cantidad);
+                ps.setString(5, id_producto);
+                ps.executeUpdate();
+            } else {
+                message = "Un material no puede tener más de una vez la misma unidad";
+            }
         } catch (SQLException ex) {
             System.out.println(ex);
+            message = "El nombre del material no se puede repetir";
         }
         con.disconnect();
+        return message;
     }
     
     public ObservableList<String> getProveedores() {

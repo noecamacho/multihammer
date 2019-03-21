@@ -65,9 +65,13 @@ public class ClientesModalController implements Initializable {
     public void agregar() {
         if (!txtNombre.getText().equals("") && !txtApellido.getText().equals("") &&!txtDomicilio.getText().equals("") && !txtTelefono.getText().equals("") && !txtRFC.getText().equals("")) {
             if(txtRFC.getText().matches("[A-ZÑ&]{3,4}\\d{6}[A-V1-9][A-Z1-9][0-9A]")) {
-                modelo.agregarCliente(txtNombre.getText(), txtApellido.getText(), txtDomicilio.getText(), txtTelefono.getText(), txtRFC.getText());
-                Stage stage = (Stage) btnAgregar.getScene().getWindow();
-                stage.close();
+                String message = modelo.agregarCliente(txtNombre.getText(), txtApellido.getText(), txtDomicilio.getText(), txtTelefono.getText(), txtRFC.getText());
+                if(message.equals("Cliente agregado exitosamente")) {
+                    Stage stage = (Stage) btnAgregar.getScene().getWindow();
+                    stage.close();
+                } else {
+                    dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", message, "OK");
+                }
             } else {
                 dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Introduce un RFC válido", "OK");
             }
@@ -78,9 +82,17 @@ public class ClientesModalController implements Initializable {
 
     public void modificar(String id_cliente) {
         if (!txtNombre.getText().equals("") && !txtApellido.getText().equals("") &&!txtDomicilio.getText().equals("") && !txtTelefono.getText().equals("") && !txtRFC.getText().equals("")) {
-            modelo.modificarCliente(txtNombre.getText(), txtApellido.getText(), txtDomicilio.getText(), txtTelefono.getText(), txtRFC.getText(), id_cliente);
-            Stage stage = (Stage) btnAgregar.getScene().getWindow();
-            stage.close();
+            if(txtRFC.getText().matches("[A-ZÑ&]{3,4}\\d{6}[A-V1-9][A-Z1-9][0-9A]")) {
+                String message = modelo.modificarCliente(txtNombre.getText(), txtApellido.getText(), txtDomicilio.getText(), txtTelefono.getText(), txtRFC.getText(), id_cliente);
+                if(message.equals("Cliente modificado exitosamente")) {
+                    Stage stage = (Stage) btnAgregar.getScene().getWindow();
+                    stage.close();
+                } else {
+                    dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", message, "OK");
+                }
+            } else {
+                dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Introduce un RFC válido", "OK");
+            }
         } else {
             dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Para modificar un cliente es necesario que todos los campos se encuentren llenos", "OK");
         }

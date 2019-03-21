@@ -45,7 +45,8 @@ public class ProveedorModel {
         con.disconnect();
     }
     
-    public void agregarProveedor(String razon_social, String domicilio, String telefono, String rfc) {
+    public String agregarProveedor(String razon_social, String domicilio, String telefono, String rfc) {
+        String message = "Proveedor agregado exitosamente";
         con = new dbConnection();
         Connection reg = con.getConnection();
         PreparedStatement ps;
@@ -59,11 +60,14 @@ public class ProveedorModel {
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
+            message = "La razón social no puede repetirse";
         }
         con.disconnect();
+        return message;
     }
     
-    public void modificarProveedor(String razon_social, String domicilio, String telefono, String rfc, String id_proveedor) {
+    public String modificarProveedor(String razon_social, String domicilio, String telefono, String rfc, String id_proveedor) {
+        String message = "Proveedor modificado exitosamente";
         con = new dbConnection();
         Connection reg = con.getConnection();
         PreparedStatement ps;
@@ -78,7 +82,9 @@ public class ProveedorModel {
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
+            message = "La razón social no puede repetirse";
         }
         con.disconnect();
+        return message;
     }
 }
