@@ -10,7 +10,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
    <children>
       <AnchorPane fx:id="panel" layoutY="60.0" prefHeight="708.0" prefWidth="1366.0" style="-fx-background-color: #232E42;" />
-      <FlowPane fx:id="navBar" layoutY="60.0" prefHeight="708.0" prefWidth="120.0" style="-fx-background-color: #1F3041;" translateX="-120.0" />
+      <FlowPane fx:id="navBar" layoutY="60.0" prefHeight="708.0" prefWidth="200.0" style="-fx-background-color: #1F3041;" translateX="-200.0" />
       <AnchorPane prefHeight="60.0" prefWidth="1366.0" style="-fx-background-color: #1F3041; -fx-border-color: #1990F8; -fx-border-width: 0 0 1 0;">
          <children>
             <JFXHamburger fx:id="btnMenu" layoutX="39.0" prefHeight="60.0" prefWidth="52.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 1;">

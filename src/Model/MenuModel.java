@@ -13,20 +13,20 @@ public class MenuModel {
     
     private static dbConnection con;
     
-    public static ArrayList<String> menuxperfil(int idPerfil) {
+    public static ArrayList<ComboBoxClass> menuxperfil(int idPerfil) {
         
-        ArrayList<String> modulos = new ArrayList<>();
+        ArrayList<ComboBoxClass> modulos = new ArrayList<>();
         con = new dbConnection();
         Connection reg = con.getConnection();
         PreparedStatement ps;
         ResultSet rs;
         try {
-            ps = reg.prepareStatement("SELECT modulos.`nombre` FROM acceso INNER JOIN modulos ON acceso.id_modulo = modulos.id_modulo WHERE acceso.id_perfil = ? ");
+            ps = reg.prepareStatement("SELECT modulos.`nombre`, modulos.icon FROM acceso INNER JOIN modulos ON acceso.id_modulo = modulos.id_modulo WHERE acceso.id_perfil = ? ");
             ps.setInt(1, idPerfil);
             rs = ps.executeQuery();
             con.disconnect();
             while(rs.next()) {
-                    modulos.add(rs.getString("nombre"));
+                    modulos.add(new ComboBoxClass(rs.getString("nombre"), rs.getString("icon")));
             }
         } catch (SQLException ex) {
             System.out.println(ex);

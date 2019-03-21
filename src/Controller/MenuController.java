@@ -1,9 +1,11 @@
 package Controller;
 
+import Model.ComboBoxClass;
 import Model.LoginModel;
 import Model.MenuModel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXHamburger;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,26 +46,35 @@ public class MenuController implements Initializable {
         displayMenu();
     }    
     
-    public void createModulesButtons(ArrayList<String> modules) {
-        Button inicio = new Button("Inicio");
+    public void createModulesButtons(ArrayList<ComboBoxClass> modules) {
+        MaterialDesignIconView iconInicio = new MaterialDesignIconView();
+        iconInicio.setGlyphName("HOME");
+        JFXButton inicio = new JFXButton("  Inicio");
         inicio.getStyleClass().add("menuBtn");
         inicio.setOnAction((event) -> {
             panel.getChildren().clear();
         });
+        inicio.setGraphic(iconInicio);
         navBar.getChildren().add(inicio);
-        for(String x : modules) {
-            Button button = new Button(x);
+        for(ComboBoxClass x : modules) {
+            MaterialDesignIconView icon = new MaterialDesignIconView();
+            icon.setGlyphName(x.getNombre());
+            JFXButton button = new JFXButton("  " + x.getId());
+            button.setGraphic(icon);
             button.getStyleClass().add("menuBtn");
             button.setOnAction((event) -> {
                 try {
-                    loadView(x);
+                    loadView(x.getId());
                 } catch (IOException ex) {
                     System.out.println(ex);
                 }
             });
             navBar.getChildren().add(button);
         }
-        Button salir = new Button("Salir");
+        JFXButton salir = new JFXButton("  Salir");
+        MaterialDesignIconView iconSalir = new MaterialDesignIconView();
+        iconSalir.setGlyphName("EXIT_TO_APP");
+        salir.setGraphic(iconSalir);
         salir.getStyleClass().add("menuBtn");
         salir.setOnAction((event) -> {
             Stage stage = (Stage) salir.getScene().getWindow();
@@ -75,15 +86,12 @@ public class MenuController implements Initializable {
     public void loadView(String name) throws IOException {
         FXMLLoader loadFXML = new FXMLLoader(getClass().getResource("/View/"+name+".fxml"));
         Parent root = loadFXML.load();
-//        LoginController loginController = loadFXML.getController();
         panel.getChildren().setAll(root);
     }
     
     public void setIdPerfil(int idPerfil) {
-        ArrayList<String> modulos = new ArrayList<>();
         this.idPerfil = idPerfil;
-        modulos = MenuModel.menuxperfil(idPerfil);
-        createModulesButtons(modulos);
+        createModulesButtons(MenuModel.menuxperfil(idPerfil));
     }
     
     public void displayMenu() {

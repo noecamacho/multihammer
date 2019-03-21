@@ -8,6 +8,7 @@ import java.sql.SQLException;
 public class LoginModel {
     
     private dbConnection con;
+    private final Dialogs dialogs = new Dialogs();
     
     public int validarLogin(String username, String password) {
         con = new dbConnection();
@@ -23,9 +24,7 @@ public class LoginModel {
             if(rs.next()) {
                     System.out.println("Ingreso exitoso");
                     return rs.getInt("id_usuario");
-                } else {
-                    System.out.println("Nel");
-                }
+            }
         } catch (SQLException ex) {
             System.out.println(ex);
         }

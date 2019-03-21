@@ -77,9 +77,13 @@ public class ProductosModalController implements Initializable {
 
     public void agregar() {
         if (!txtMaterial.getText().equals("") && !txtDescripcion.getText().equals("") && !txtUnidades.getValue().equals("") && !txtPrecio.getText().equals("") && !txtCantidad.getText().equals("")) {
-            modelo.agregarProducto(txtMaterial.getText(), txtDescripcion.getText(), txtUnidades.getValue(), txtPrecio.getText(), txtProveedor.getValue(), txtCantidad.getText());
-            Stage stage = (Stage) btnAgregar.getScene().getWindow();
-            stage.close();
+            String message = modelo.agregarProducto(txtMaterial.getText(), txtDescripcion.getText(), txtUnidades.getValue(), txtPrecio.getText(), txtProveedor.getValue(), txtCantidad.getText());
+            if(message.equals("Producto y material agregado exitosamente")) {
+                Stage stage = (Stage) btnAgregar.getScene().getWindow();
+                stage.close();
+            } else {
+                dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", message, "OK");
+            }
         } else {
             dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Para agregar un producto es necesario que todos los campos se encuentren llenos", "OK");
         }
@@ -87,9 +91,13 @@ public class ProductosModalController implements Initializable {
 
     public void modificar(String id_producto) {
         if (!txtMaterial.getText().equals("") && !txtDescripcion.getText().equals("") && !txtUnidades.getValue().equals("") && !txtPrecio.getText().equals("") && !txtCantidad.getText().equals("")) {
-            modelo.modificarProducto(txtMaterial.getText(), txtDescripcion.getText(), txtUnidades.getValue(), txtPrecio.getText(), txtProveedor.getValue(), txtCantidad.getText(), id_producto);
-            Stage stage = (Stage) btnAgregar.getScene().getWindow();
-            stage.close();
+            String message = modelo.modificarProducto(txtMaterial.getText(), txtDescripcion.getText(), txtUnidades.getValue(), txtPrecio.getText(), txtProveedor.getValue(), txtCantidad.getText(), id_producto);
+            if(message.equals("Producto y material modificado exitosamente")) {
+                Stage stage = (Stage) btnAgregar.getScene().getWindow();
+                stage.close();
+            } else {
+                dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", message, "OK");
+            }
         } else {
             dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Para modificar un producto es necesario que todos los campos se encuentren llenos", "OK");
         }

@@ -65,9 +65,12 @@ public class ProveedoresModalController implements Initializable {
     public void agregar() {
         if (!txtRazonSocial.getText().equals("") && !txtDomicilio.getText().equals("") && !txtTelefono.getText().equals("") && !txtRFC.getText().equals("")) {
             if(txtRFC.getText().matches("[A-ZÑ&]{3,4}\\d{6}[A-V1-9][A-Z1-9][0-9A]")) {
-                modelo.agregarProveedor(txtRazonSocial.getText(), txtDomicilio.getText(), txtTelefono.getText(), txtRFC.getText());
-                Stage stage = (Stage) btnAgregar.getScene().getWindow();
-                stage.close();
+                String message = modelo.agregarProveedor(txtRazonSocial.getText(), txtDomicilio.getText(), txtTelefono.getText(), txtRFC.getText());
+                if(message.equals("Proveedor agregado exitosamente")) {
+                    Stage stage = (Stage) btnAgregar.getScene().getWindow();
+                    stage.close();
+                } else 
+                    dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", message, "OK");
             } else {
                 dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Introduce un RFC válido", "OK");
             }
@@ -78,9 +81,16 @@ public class ProveedoresModalController implements Initializable {
 
     public void modificar(String id_proveedor) {
         if (!txtRazonSocial.getText().equals("") && !txtDomicilio.getText().equals("") && !txtTelefono.getText().equals("") && !txtRFC.getText().equals("")) {
-            modelo.modificarProveedor(txtRazonSocial.getText(), txtDomicilio.getText(), txtTelefono.getText(), txtRFC.getText(), id_proveedor);
-            Stage stage = (Stage) btnAgregar.getScene().getWindow();
-            stage.close();
+            if(txtRFC.getText().matches("[A-ZÑ&]{3,4}\\d{6}[A-V1-9][A-Z1-9][0-9A]")) {
+                String message = modelo.modificarProveedor(txtRazonSocial.getText(), txtDomicilio.getText(), txtTelefono.getText(), txtRFC.getText(), id_proveedor);
+                if(message.equals("Proveedor modificado exitosamente")) {
+                    Stage stage = (Stage) btnAgregar.getScene().getWindow();
+                    stage.close();
+                } else 
+                    dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", message, "OK");
+            } else {
+                dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Introduce un RFC válido", "OK");
+            }
         } else {
             dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Para modificar un proveedor es necesario que todos los campos se encuentren llenos", "OK");
         }

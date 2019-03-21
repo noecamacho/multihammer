@@ -16,7 +16,7 @@
     -fx-text-fill: #70889E;
     -fx-alignment: CENTER_LEFT;
     -jfx-button-type: RAISED;
-    -fx-pref-width: 120;
+    -fx-pref-width: 200;
     -fx-pref-height: 50;
     -fx-background-color:   #232E42;
 }
@@ -28,6 +28,15 @@
     -fx-border-color:  #1990F8;
     -fx-border-width: 0 0 0 10;
     -fx-font-family: "Roboto Bold";
+}
+
+.menuBtn .label {
+    -fx-padding: 50;
+}
+
+.menuBtn:hover .glyph-icon {
+    -fx-fill: #1990F8;
+    -fx-font-family: "Material Design Icons";
 }
 
 .jfx-hamburger StackPane {
@@ -148,4 +157,10 @@
 .text-area:focused {
     -fx-border-color: #1990F8;
     -fx-border-width: 1 1 1 1;
+}
+
+.glyph-icon {
+    -fx-fill: #70889E;
+    -fx-font-size: 20;
+    -fx-font-family: "Material Design Icons";
 }

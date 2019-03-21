@@ -29,7 +29,7 @@
             </Lighting>
          </effect>
       </ImageView>
-      <AnchorPane layoutX="916.0" prefHeight="768.0" prefWidth="450.0" style="-fx-background-color: #232E42; -fx-border-color: #1990F8; -fx-border-width: 0 0 0 1;">
+      <AnchorPane fx:id="panel" layoutX="916.0" prefHeight="768.0" prefWidth="450.0" style="-fx-background-color: #232E42; -fx-border-color: #1990F8; -fx-border-width: 0 0 0 1;">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="125.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
                <image>

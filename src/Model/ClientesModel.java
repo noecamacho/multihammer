@@ -29,7 +29,8 @@ public class ClientesModel {
         return clientes;
     }
     
-    public void agregarCliente(String nombre, String apellido, String domicilio, String telefono, String rfc) {
+    public String agregarCliente(String nombre, String apellido, String domicilio, String telefono, String rfc) {
+        String message = "Cliente agregado exitosamente";
         con = new dbConnection();
         Connection reg = con.getConnection();
         PreparedStatement ps;
@@ -44,11 +45,14 @@ public class ClientesModel {
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
+            message = "El RFC de cliente no se puede repetir";
         }
         con.disconnect();
+        return message;
     }
     
-    public void modificarCliente(String nombre, String apellido, String domicilio, String telefono, String rfc, String id_cliente) {
+    public String modificarCliente(String nombre, String apellido, String domicilio, String telefono, String rfc, String id_cliente) {
+        String message = "Cliente modificado exitosamente";
         con = new dbConnection();
         Connection reg = con.getConnection();
         PreparedStatement ps;
@@ -64,7 +68,9 @@ public class ClientesModel {
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
+            message = "El RFC de cliente no se puede repetir";
         }
         con.disconnect();
+        return message;
     }
 }
