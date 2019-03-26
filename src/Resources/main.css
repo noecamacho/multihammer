@@ -4,12 +4,20 @@
 
 .label {
     -fx-text-fill: white;
-    -fx-size: 28;
+}
+
+.titleLabel {
+    -fx-font-size: 30;
 }
 
 .button {
     -fx-text-fill: white;
     -fx-background-color: #1990F8;
+    -fx-font-size: 17;
+}
+
+.button:hover {
+    -fx-cursor: hand;
 }
 
 .menuBtn {
@@ -17,6 +25,7 @@
     -fx-alignment: CENTER_LEFT;
     -jfx-button-type: RAISED;
     -fx-pref-width: 200;
+    -fx-font-size: 15;
     -fx-pref-height: 50;
     -fx-background-color:   #232E42;
 }
@@ -46,6 +55,7 @@
 .tree-table-view {
     -fx-background-color: #2F3B53;
     -fx-border-width: 0 0 0 0;
+    -fx-background-radius: 10;
 }
 
 .tree-table-view .column-header {
@@ -164,3 +174,12 @@
     -fx-font-size: 20;
     -fx-font-family: "Material Design Icons";
 }
+
+.modal {
+     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+     -fx-background-color:  #2F3B53;
+     -fx-background-radius: 20;
+     -fx-background-insets: 2;
+     -fx-padding: 20;
+}
+

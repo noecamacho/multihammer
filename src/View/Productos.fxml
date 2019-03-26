@@ -3,20 +3,29 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="708.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductosController">
+<AnchorPane id="AnchorPane" prefHeight="708.0" prefWidth="1366.0" stylesheets="@../Resources/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductosController">
    <children>
       <JFXTreeTableView fx:id="table" layoutX="123.0" layoutY="101.0" prefHeight="549.0" prefWidth="1154.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets></JFXTreeTableView>
-      <JFXButton fx:id="btnAgregar" layoutX="569.0" layoutY="50.0" onAction="#btnAgregarAction" prefWidth="150.0" text="Agregar" />
-      <JFXButton fx:id="btnModificar" layoutX="766.0" layoutY="50.0" onAction="#btnModificarAction" prefWidth="150.0" text="Modificar" />
-      <JFXButton fx:id="btnEliminar" layoutX="955.0" layoutY="50.0" onAction="#btnEliminarAction" prefWidth="150.0" text="Eliminar" />
-      <JFXTextField fx:id="searchField" layoutX="278.0" layoutY="50.0" prefHeight="25.0" prefWidth="234.0" promptText="Buscar" />
-      <Label layoutX="132.0" layoutY="55.0" text="Productos" />
+      <JFXButton fx:id="btnAgregar" contentDisplay="RIGHT" layoutX="569.0" layoutY="50.0" maxHeight="36.0" minHeight="36.0" onAction="#btnAgregarAction" prefHeight="36.0" prefWidth="150.0" style="-fx-background-position: right center;" text="Material">
+         <graphic>
+            <MaterialDesignIconView glyphName="PLUS" size="30" style="-fx-font-size: 30; -fx-fill: white;" />
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnModificar" layoutX="934.0" layoutY="50.0" onAction="#btnModificarAction" prefWidth="150.0" text="Modificar" />
+      <JFXButton fx:id="btnEliminar" layoutX="1127.0" layoutY="50.0" onAction="#btnEliminarAction" prefWidth="150.0" text="Eliminar" />
+      <JFXTextField fx:id="searchField" layoutX="307.0" layoutY="51.0" prefHeight="31.0" prefWidth="219.0" promptText="Buscar" />
+      <Label layoutX="123.0" layoutY="45.0" styleClass="titleLabel" text="Productos" />
+      <JFXButton fx:id="btnUnidad" contentDisplay="RIGHT" layoutX="752.0" layoutY="50.0" maxHeight="36.0" minHeight="36.0" onAction="#btnUnidadAction" prefHeight="36.0" prefWidth="150.0" style="-fx-background-position: right center;" text="Unidad">
+         <graphic>
+            <MaterialDesignIconView glyphName="PLUS" size="30" style="-fx-font-size: 30; -fx-fill: white;" />
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

@@ -23,10 +23,10 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 public class EstadisticasController implements Initializable {
-
+    // Instanciación del modelo y dialogos
     private final Dialogs dialogs = new Dialogs();
     private final EstadisticasModel modelo = new EstadisticasModel();
-    
+    // Declaración de componentes
     @FXML
     private JFXComboBox<ComboBoxClass> txtGrafica;
     @FXML
@@ -54,19 +54,23 @@ public class EstadisticasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Se esconden las 3 tablas
         hideCharts();
+        // Se agregan los valores del ComboBox de tipo de gráfica
         ObservableList<ComboBoxClass> data = FXCollections.observableArrayList();
         data.addAll(new ComboBoxClass("1", "De barras"),
                     new ComboBoxClass("2", "De pastel"),
                     new ComboBoxClass("3", "De líneas")
                 );
         txtGrafica.setItems(data);
+        // Se agregan los valores del ComboBox de tipo de reporte
         ObservableList<ComboBoxClass> data2 = FXCollections.observableArrayList();
         data2.addAll(new ComboBoxClass("1", "De clientes"),
                     new ComboBoxClass("2", "De productos"),
                     new ComboBoxClass("3", "De pedidos")
                 );
         txtReporte.setItems(data2);
+        // Se despliega unicamente el nombre
         txtGrafica.setConverter(new StringConverter<ComboBoxClass>() {
             @Override
             public String toString(ComboBoxClass object) {
@@ -78,6 +82,7 @@ public class EstadisticasController implements Initializable {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
+        // Se despliega unicamente el nombre
         txtReporte.setConverter(new StringConverter<ComboBoxClass>() {
             @Override
             public String toString(ComboBoxClass object) {
@@ -90,7 +95,7 @@ public class EstadisticasController implements Initializable {
             }
         });
     }    
-    
+    // Función para ocultar las 3 tablas
     public void hideCharts() {
         PieChart.setVisible(false);
         LineChart.setVisible(false);
@@ -144,7 +149,9 @@ public class EstadisticasController implements Initializable {
     
     @FXML
     private void btnGraficaAction() {
+        // Validación de que todo tenga un valor asignado
         if(txtGrafica.getValue() != null && txtReporte.getValue() != null && txtFechaInicial.getValue() != null && txtFechaFinal.getValue() != null) {
+            // Validación de que la fecha final no puede ser menor que la fecha inicial
             if(txtFechaFinal.getValue().isAfter(txtFechaInicial.getValue())) {
                 //Acción del botón
                 //Se valido que los filtros estuvieran correctos y se selecciona el tipo de gráfica que se va a hacer
