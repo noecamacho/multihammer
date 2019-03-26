@@ -24,15 +24,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ClientesController implements Initializable {
-
+    //Instanciación del modelo
     private final ClientesModel modelo = new ClientesModel();
+    //Instanciación de clase para mostrar dialogos
     final private Dialogs dialogs = new Dialogs();
+    //Variable auxiliar para guardar los valores del elemento seleccionado en la tabla
     private Cliente selectedCliente = new Cliente();
-    
+    //Declaración de variables
     @FXML
     private JFXButton btnAgregar;
     @FXML
@@ -47,25 +52,29 @@ public class ClientesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Se crea la tabla y se carga con valores
         createTable();
         createTableView();
+        //Se desactiva el botón Modificar
         disableButtons(true);
     }    
-    
+    //Función para desactivar el botón Modificar
     public void disableButtons(boolean value) {
         btnModificar.setDisable(value);
     }
-    
+    //Función que se llama al hacer click sobre una fila de la tabla
     private Cliente getLeadSelect() {
         TreeItem<Cliente> selectedItem = (TreeItem<Cliente>) table.getSelectionModel().getSelectedItem();
+        //Llama a la función disableButtons si el id_cliente es diferente 1 (si no es Público General)
         if(!selectedItem.getValue().id_cliente.get().equals("1")) {
             disableButtons(false);
         } else {
             disableButtons(true);
         }
+        //Asigna el valor de la fila seleccionada a la variable auxiliar
         return selectedItem == null ? null : selectedItem.getValue();
     }
-    
+    //Función que permite buscar con el JFXTextField llamado searchField 
     private ChangeListener<String> setupSearchField(final JFXTreeTableView<Cliente> tableView) {
         return (o, oldVal, newVal) ->
             tableView.setPredicate(personProp -> {
@@ -76,13 +85,13 @@ public class ClientesController implements Initializable {
     }
     
     public void createTable() {
-        
+        // Se asigna el evento de click en las filas para llamar la función getLeadSelect()
         table.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> this.selectedCliente = getLeadSelect());
-        
+        //Se agrega el listener a searchField para buscar en la tabla
         searchField.textProperty().addListener(setupSearchField(table));
-
+        //Se declara la estructura de la tabla
         JFXTreeTableColumn<Cliente, String> id = new JFXTreeTableColumn("ID");
         id.setPrefWidth(100);
         id.setCellValueFactory((TreeTableColumn.CellDataFeatures<Cliente, String> param) -> param.getValue().getValue().id_cliente);
@@ -107,17 +116,17 @@ public class ClientesController implements Initializable {
         rfc.setPrefWidth(175);
         rfc.setCellValueFactory((TreeTableColumn.CellDataFeatures<Cliente, String> param) -> param.getValue().getValue().rfc);
 
-
+        //Se agregan las columnas declaradas anteriormente a la tabla
         table.getColumns().setAll(id, nombre, apellido, domicilio, telefono, rfc);
     }
-    
+    // Función para mostrar valores en la tabla
     public void createTableView() {
         TreeItem<Cliente> root = new RecursiveTreeItem<>(tableInformation(), RecursiveTreeObject::getChildren);
         table.setRoot(root);
         table.setShowRoot(false);
         disableButtons(true);
     }
-
+    // Función que nos regresa los datos que se mostraran en la tabla
     public ObservableList<Cliente> tableInformation() {
         ObservableList<Cliente> proveedor = FXCollections.observableArrayList();
         modelo.getClientes().forEach((x) -> {
@@ -126,34 +135,52 @@ public class ClientesController implements Initializable {
         return proveedor;
     }
     
-
+    // Función Agragar
     @FXML
     private void btnAgregarAction(ActionEvent event) throws IOException {
+        // Se carga el modal para agregar clientes
         Stage stage = new Stage();
         FXMLLoader modal = new FXMLLoader(getClass().getResource("/View/ClientesModal.fxml"));
         Parent root = modal.load();
+        // Se agrega el archivo main.css al Stage que se declaró
         root.getStylesheets().add("/Resources/main.css");
         stage.setScene(new Scene(root));
-        stage.setTitle("Agregar Clientes");
+        // Se remueve la barra de windows
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.getScene().setFill(Color.TRANSPARENT);
+        // Se inicia con modalidad de Modal
         stage.initModality(Modality.WINDOW_MODAL);
+        // Se asigna el padre del modal
         stage.initOwner(((Node)event.getSource()).getScene().getWindow() );
+        // Se detiene el flujo mientras que el modal se encuentre activo
         stage.showAndWait();
+        // Se vuelven a imprimir los valores de la tabla
         createTableView();
     }
-
+    // Función Modificar
     @FXML
     private void btnModificarAction(ActionEvent event) throws IOException {
+        // Se carga el modal para agregar clientes
         Stage stage = new Stage();
         FXMLLoader modal = new FXMLLoader(getClass().getResource("/View/ClientesModal.fxml"));
         Parent root = modal.load();
+        // Se agrega el archivo main.css al Stage que se declaró
         root.getStylesheets().add("/Resources/main.css");
+        // Se instancia el controlador del modal de clientes
         ClientesModalController pmc = modal.getController();
+        // Se manda al controlador de la vista ClientesModal los valores de la fila seleccionada
         pmc.setValuesToModify(selectedCliente.id_cliente.get(), selectedCliente.domicilio.get(), selectedCliente.rfc.get(), selectedCliente.nombre.get(),selectedCliente.apellido.get(), selectedCliente.telefono.get());
         stage.setScene(new Scene(root));
-        stage.setTitle("Agregar Producto");
+        // Se remueve la barra de windows
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.getScene().setFill(Color.TRANSPARENT);
+        // Se inicia con modalidad de Modal
         stage.initModality(Modality.WINDOW_MODAL);
+        // Se asigna el padre del modal
         stage.initOwner(((Node)event.getSource()).getScene().getWindow() );
+        // Se detiene el flujo mientras que el modal se encuentre activo
         stage.showAndWait();
+        // Se vuelven a imprimir los valores de la tabla
         createTableView();
     }
 

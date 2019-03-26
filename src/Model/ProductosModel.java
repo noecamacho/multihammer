@@ -86,6 +86,38 @@ public class ProductosModel {
         return message;
     }
     
+    public String agregarUnidad(ComboBoxClass material, String unidad, String precio, String proveedor, String cantidad) {
+        String message = "Unidad agregada exitosamente";
+        int id_material;
+        con = new dbConnection();
+        Connection reg = con.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps = reg.prepareStatement("SELECT * from productos WHERE id_material = ? AND unidad = ?");
+            ps.setString(1, material.getId());
+            ps.setString(2, unidad);
+            rs = ps.executeQuery();
+            if(!rs.next()) {
+                ps = reg.prepareStatement("INSERT INTO productos (id_material, unidad, precio, id_proveedor, cantidad) VALUES (?,?,?,(SELECT proveedores.`id_proveedor` FROM proveedores WHERE proveedores.`razon_social` = ?),?)");
+                ps.setString(1, material.getId());
+                ps.setString(2, unidad);
+                ps.setString(3, precio);
+                ps.setString(4, proveedor);
+                ps.setString(5, cantidad);
+                ps.executeUpdate();
+            } else {
+                message = "Un material no puede tener más de una vez la misma unidad";
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        con.disconnect();
+        return message;
+    }
+    
+    
+    
     public String modificarProducto(String material, String descripcion, String unidad, String precio, String proveedor, String cantidad, String id_producto) {
         String message = "Producto y material modificado exitosamente";
         int id_material;
@@ -162,5 +194,27 @@ public class ProductosModel {
         }
         con.disconnect();
         return descripcion;
+    }
+    
+    public ObservableList<ComboBoxClass> getMateriales() {
+        ArrayList<ComboBoxClass> mat = new ArrayList<>();
+        ObservableList<ComboBoxClass> materiales = FXCollections.observableList(mat);
+        ComboBoxClass cbc;
+        con = new dbConnection();
+        Connection reg = con.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps = reg.prepareStatement("SELECT id_material, material from materiales");
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                cbc = new ComboBoxClass(rs.getString("id_material"), rs.getString("material"));
+                mat.add(cbc);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        con.disconnect();
+        return materiales;
     }
 }
