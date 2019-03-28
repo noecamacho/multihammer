@@ -44,7 +44,7 @@ public class VentasModel {
         PreparedStatement ps;
         ResultSet rs;
         try {
-            ps = reg.prepareStatement("SELECT id_material, material from materiales");
+            ps = reg.prepareStatement("SELECT materiales.id_material, material from materiales INNER JOIN productos on materiales.id_material = productos.id_material WHERE productos.existencia = 1 GROUP BY material");
             rs = ps.executeQuery();
             while(rs.next()) {
                 cbc = new ComboBoxClass(rs.getString("id_material"), rs.getString("material"));
@@ -66,7 +66,7 @@ public class VentasModel {
         PreparedStatement ps;
         ResultSet rs;
         try {
-            ps = reg.prepareStatement("SELECT id_producto, unidad from productos WHERE id_material = ?");
+            ps = reg.prepareStatement("SELECT id_producto, unidad from productos WHERE id_material = ? AND existencia = 1");
             ps.setString(1, id_material);
             rs = ps.executeQuery();
             while(rs.next()) {

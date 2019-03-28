@@ -1,5 +1,6 @@
 package Model;
 
+import com.jfoenix.controls.JFXToggleButton;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -11,23 +12,26 @@ public class Producto extends RecursiveTreeObject<Producto>{
     public SimpleStringProperty proveedor;
     public SimpleStringProperty cantidad;
     public SimpleStringProperty id_producto;
+    public SimpleStringProperty estado;
 
-    public Producto(SimpleStringProperty material, SimpleStringProperty unidad, SimpleStringProperty precio, SimpleStringProperty proveedor, SimpleStringProperty cantidad, SimpleStringProperty id_producto) {
+    public Producto(SimpleStringProperty material, SimpleStringProperty unidad, SimpleStringProperty precio, SimpleStringProperty proveedor, SimpleStringProperty cantidad, SimpleStringProperty id_producto, SimpleStringProperty estado) {
         this.material = material;
         this.unidad = unidad;
         this.precio = precio;
         this.proveedor = proveedor;
         this.cantidad = cantidad;
         this.id_producto = id_producto;
+        this.estado = estado;
     }
 
-    public Producto(String material, String unidad, String precio, String proveedor, String cantidad, String id_producto) {
+    public Producto(String material, String unidad, String precio, String proveedor, String cantidad, String id_producto, String estado) {
         this.material = new SimpleStringProperty(material);
         this.unidad = new SimpleStringProperty(unidad);
         this.precio = new SimpleStringProperty(precio);
         this.proveedor = new SimpleStringProperty(proveedor);
         this.cantidad = new SimpleStringProperty(cantidad);
         this.id_producto = new SimpleStringProperty(id_producto);
+        this.estado = new SimpleStringProperty(estado);
     }
 
     public Producto() {
@@ -83,6 +87,14 @@ public class Producto extends RecursiveTreeObject<Producto>{
 
     public void setId_producto(String id_producto) {
         this.id_producto = new SimpleStringProperty(id_producto);
+    }
+
+    public SimpleStringProperty getEstado() {
+        return estado;
+    }
+
+    public void setEstado(SimpleStringProperty estado) {
+        this.estado = estado;
     }
     
     

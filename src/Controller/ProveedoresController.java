@@ -1,11 +1,13 @@
 package Controller;
 
 import Model.Dialogs;
+import Model.Producto;
 import Model.ProductosModel;
 import Model.Proveedor;
 import Model.ProveedorModel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
@@ -25,11 +27,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableCell;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
 public class ProveedoresController implements Initializable {
     // Declaraciòn/Instanciaciòn de variables
@@ -42,8 +46,6 @@ public class ProveedoresController implements Initializable {
     private JFXButton btnAgregar;
     @FXML
     private JFXButton btnModificar;
-    @FXML
-    private JFXButton btnEliminar;
     @FXML
     private JFXTreeTableView<Proveedor> table;
     @FXML
@@ -67,7 +69,6 @@ public class ProveedoresController implements Initializable {
     // Funciòn para desactivar los botones
     public void disableButtons(boolean value) {
         btnModificar.setDisable(value);
-        btnEliminar.setDisable(value);
     }
     // Se dan los valores a la variable auxiliar de la fila seleccionada
     private Proveedor getLeadSelect() {
@@ -92,27 +93,61 @@ public class ProveedoresController implements Initializable {
         // Se agrega el evento al campo de bùsqueda
         searchField.textProperty().addListener(setupSearchField(table));
         // Estructura de la tabla
-        JFXTreeTableColumn<Proveedor, String> id = new JFXTreeTableColumn("ID");
-        id.setPrefWidth(100);
-        id.setCellValueFactory((TreeTableColumn.CellDataFeatures<Proveedor, String> param) -> param.getValue().getValue().id_proveedor);
 
         JFXTreeTableColumn<Proveedor, String> razonSocial = new JFXTreeTableColumn("Razón Social");
-        razonSocial.setPrefWidth(250);
+        razonSocial.setPrefWidth(200);
         razonSocial.setCellValueFactory((TreeTableColumn.CellDataFeatures<Proveedor, String> param) -> param.getValue().getValue().razon_social);
 
         JFXTreeTableColumn<Proveedor, String> domicilio = new JFXTreeTableColumn("Domicilio");
-        domicilio.setPrefWidth(300);
+        domicilio.setPrefWidth(290);
         domicilio.setCellValueFactory((TreeTableColumn.CellDataFeatures<Proveedor, String> param) -> param.getValue().getValue().domicilio);
 
         JFXTreeTableColumn<Proveedor, String> telefono = new JFXTreeTableColumn("Teléfono");
-        telefono.setPrefWidth(200);
+        telefono.setPrefWidth(195);
         telefono.setCellValueFactory((TreeTableColumn.CellDataFeatures<Proveedor, String> param) -> param.getValue().getValue().telefono);
 
         JFXTreeTableColumn<Proveedor, String> rfc = new JFXTreeTableColumn("RFC");
-        rfc.setPrefWidth(250);
+        rfc.setPrefWidth(195);
         rfc.setCellValueFactory((TreeTableColumn.CellDataFeatures<Proveedor, String> param) -> param.getValue().getValue().rfc);
 
-        table.getColumns().setAll(id, razonSocial, domicilio, telefono, rfc);
+        // Crea columna con un JFXToggleButton que indica el estado de existencia del producto
+        JFXTreeTableColumn<Proveedor, String> estado = new JFXTreeTableColumn<>("Estado");
+        estado.setPrefWidth(200);
+        Callback<TreeTableColumn<Proveedor, String>, TreeTableCell<Proveedor, String>> cellFactory
+                =                 
+        (final TreeTableColumn<Proveedor, String> param) -> {
+            final TreeTableCell<Proveedor, String> cell = new TreeTableCell<Proveedor, String>() {
+                // Declara el ToggleButton
+                final JFXToggleButton btn = new JFXToggleButton();
+                
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+                    } else {
+                        // Establece el estado en que aparece el botón segun su existencia
+                        if(getTreeTableRow().getItem().estado.get().equals("1")) {
+                            btn.setSelected(true);
+                        } else {
+                            btn.setSelected(false);
+                        }
+                        // Acción al activar
+                        btn.setOnAction(event -> {
+                            // Cambia el estado del producto
+                            modelo.cambiarEstado(getTreeTableRow().getItem().id_proveedor.get());
+                        });
+                        setGraphic(btn);
+                        setText(null);
+                    }
+                }
+            };
+            return cell;
+        };
+        estado.setCellFactory(cellFactory);
+        
+        table.getColumns().setAll(razonSocial, domicilio, telefono, rfc, estado);
     }
     // Asigna los valores a la tabla
     public void createTableView() {
@@ -125,7 +160,7 @@ public class ProveedoresController implements Initializable {
     public ObservableList<Proveedor> tableInformation() {
         ObservableList<Proveedor> proveedor = FXCollections.observableArrayList();
         modelo.getProveedores().forEach((x) -> {
-            proveedor.add(new Proveedor(x.id_proveedor, x.domicilio, x.rfc, x.razon_social, x.telefono));
+            proveedor.add(new Proveedor(x.id_proveedor, x.domicilio, x.rfc, x.razon_social, x.telefono, x.estado));
         });
         return proveedor;
     }
@@ -165,18 +200,5 @@ public class ProveedoresController implements Initializable {
         stage.showAndWait();
         createTableView();
     }
-    // Funciòn para dar baja lògica a la fila seleccionada
-    @FXML
-    private void btnEliminarAction(ActionEvent event) {
-        if(dialogs.displayMessage((Stage) btnEliminar.getScene().getWindow(), "Eliminar proveedor", "¿Estás seguro que deseas eliminar este proveedor?", "Si", "No")) {
-            if(this.selectedProveedor.id_proveedor != null) {
-                modelo.eliminarProveedor(this.selectedProveedor.id_proveedor.get());
-                this.selectedProveedor.setId_proveedor("");
-            } else {
-                System.out.println("selecciona algo");
-            }
-            createTableView();
-        }
-    } 
     
 }

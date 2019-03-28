@@ -14,15 +14,14 @@
          <opaqueInsets>
             <Insets />
          </opaqueInsets></JFXTreeTableView>
-      <JFXButton fx:id="btnAgregar" contentDisplay="RIGHT" layoutX="569.0" layoutY="50.0" maxHeight="36.0" minHeight="36.0" onAction="#btnAgregarAction" prefHeight="36.0" prefWidth="150.0" style="-fx-background-position: right center;" text="Material">
+      <JFXButton fx:id="btnAgregar" contentDisplay="RIGHT" layoutX="727.0" layoutY="48.0" maxHeight="36.0" minHeight="36.0" onAction="#btnAgregarAction" prefHeight="36.0" prefWidth="150.0" style="-fx-background-position: right center;" text="Material">
          <graphic>
             <MaterialDesignIconView glyphName="PLUS" size="30" style="-fx-font-size: 30; -fx-fill: white;" />
          </graphic></JFXButton>
-      <JFXButton fx:id="btnModificar" layoutX="934.0" layoutY="50.0" onAction="#btnModificarAction" prefWidth="150.0" text="Modificar" />
-      <JFXButton fx:id="btnEliminar" layoutX="1127.0" layoutY="50.0" onAction="#btnEliminarAction" prefWidth="150.0" text="Eliminar" />
-      <JFXTextField fx:id="searchField" layoutX="307.0" layoutY="51.0" prefHeight="31.0" prefWidth="219.0" promptText="Buscar" />
+      <JFXButton fx:id="btnModificar" layoutX="1127.0" layoutY="48.0" onAction="#btnModificarAction" prefWidth="150.0" text="Modificar" />
+      <JFXTextField fx:id="searchField" layoutX="307.0" layoutY="51.0" prefHeight="31.0" prefWidth="378.0" promptText="Buscar" />
       <Label layoutX="123.0" layoutY="45.0" styleClass="titleLabel" text="Productos" />
-      <JFXButton fx:id="btnUnidad" contentDisplay="RIGHT" layoutX="752.0" layoutY="50.0" maxHeight="36.0" minHeight="36.0" onAction="#btnUnidadAction" prefHeight="36.0" prefWidth="150.0" style="-fx-background-position: right center;" text="Unidad">
+      <JFXButton fx:id="btnUnidad" contentDisplay="RIGHT" layoutX="927.0" layoutY="49.0" maxHeight="36.0" minHeight="36.0" onAction="#btnUnidadAction" prefHeight="36.0" prefWidth="150.0" style="-fx-background-position: right center;" text="Unidad">
          <graphic>
             <MaterialDesignIconView glyphName="PLUS" size="30" style="-fx-font-size: 30; -fx-fill: white;" />
          </graphic>
