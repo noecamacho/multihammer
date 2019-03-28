@@ -20,10 +20,10 @@ public class ProductosModel {
         PreparedStatement ps;
         ResultSet rs;
         try {
-            ps = reg.prepareStatement("SELECT id_producto, material, unidad, precio, cantidad, razon_social FROM `materiales` INNER JOIN `productos` ON `productos`.`id_material` = `materiales`.`id_material` INNER JOIN proveedores ON productos.`id_proveedor` = proveedores.`id_proveedor` WHERE productos.existencia = 1");
+            ps = reg.prepareStatement("SELECT id_producto, material, unidad, precio, cantidad, razon_social, productos.existencia as estado FROM `materiales` INNER JOIN `productos` ON `productos`.`id_material` = `materiales`.`id_material` INNER JOIN proveedores ON productos.`id_proveedor` = proveedores.`id_proveedor` ORDER BY material ASC");
             rs = ps.executeQuery();
             while(rs.next()) {
-                Producto x = new Producto(rs.getString("material"), rs.getString("unidad"), rs.getString("precio"), rs.getString("razon_social"), rs.getString("cantidad"),rs.getString("id_producto"));    
+                Producto x = new Producto(rs.getString("material"), rs.getString("unidad"), rs.getString("precio"), rs.getString("razon_social"), rs.getString("cantidad"),rs.getString("id_producto"), rs.getString("estado"));    
                 productos.add(x);
             }
         } catch (SQLException ex) {
@@ -31,21 +31,6 @@ public class ProductosModel {
         }
         con.disconnect();
         return productos;
-    }
-    
-    public void eliminarProducto(String id) {
-        con = new dbConnection();
-        Connection reg = con.getConnection();
-        PreparedStatement ps;
-        ResultSet rs;
-        try {
-            ps = reg.prepareStatement("UPDATE productos SET existencia = 0 WHERE productos.id_producto = ?");
-            ps.setString(1, id);
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        con.disconnect();
     }
     
     public String agregarProducto(String material, String descripcion, String unidad, String precio, String proveedor, String cantidad) {
@@ -216,5 +201,20 @@ public class ProductosModel {
         }
         con.disconnect();
         return materiales;
+    }
+    
+    public void cambiarEstado(String id_producto) {
+        con = new dbConnection();
+        Connection reg = con.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps = reg.prepareStatement("UPDATE productos SET existencia = (SELECT IF(existencia = '1', '0', '1')) WHERE productos.`id_producto` = ?");
+            ps.setString(1, id_producto);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        con.disconnect();
     }
 }

@@ -9,10 +9,9 @@
 <AnchorPane id="AnchorPane" prefHeight="708.0" prefWidth="1366.0" stylesheets="@../Resources/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProveedoresController">
    <children>
       <JFXTreeTableView fx:id="table" layoutX="149.0" layoutY="108.0" prefHeight="564.0" prefWidth="1103.0" />
-      <JFXButton fx:id="btnAgregar" layoutX="699.0" layoutY="49.0" onAction="#btnAgregarAction" prefWidth="150.0" text="Agregar" />
-      <JFXButton fx:id="btnModificar" layoutX="892.0" layoutY="49.0" onAction="#btnModificarAction" prefWidth="150.0" text="Modificar" />
-      <JFXButton fx:id="btnEliminar" layoutX="1102.0" layoutY="49.0" onAction="#btnEliminarAction" prefWidth="150.0" text="Eliminar" />
-      <JFXTextField fx:id="searchField" layoutX="363.0" layoutY="49.0" prefHeight="31.0" prefWidth="320.0" promptText="Buscar" />
+      <JFXButton fx:id="btnAgregar" layoutX="852.0" layoutY="49.0" onAction="#btnAgregarAction" prefWidth="150.0" text="Agregar" />
+      <JFXButton fx:id="btnModificar" layoutX="1102.0" layoutY="47.0" onAction="#btnModificarAction" prefWidth="150.0" text="Modificar" />
+      <JFXTextField fx:id="searchField" layoutX="363.0" layoutY="49.0" prefHeight="31.0" prefWidth="416.0" promptText="Buscar" />
       <Label layoutX="149.0" layoutY="54.0" styleClass="titleLabel" text="Proveedores" />
    </children>
 </AnchorPane>

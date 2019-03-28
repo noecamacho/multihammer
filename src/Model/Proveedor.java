@@ -10,21 +10,25 @@ public class Proveedor extends RecursiveTreeObject<Proveedor>{
     public SimpleStringProperty rfc;
     public SimpleStringProperty razon_social;
     public SimpleStringProperty telefono;
+    public SimpleStringProperty estado;
+    
 
-    public Proveedor(String id_proveedor, String domicilio, String rfc, String razon_social, String telefono) {
+    public Proveedor(String id_proveedor, String domicilio, String rfc, String razon_social, String telefono, String estado) {
         this.id_proveedor = new SimpleStringProperty(id_proveedor);
         this.domicilio = new SimpleStringProperty(domicilio);
         this.rfc = new SimpleStringProperty(rfc);
         this.razon_social = new SimpleStringProperty(razon_social);
         this.telefono = new SimpleStringProperty(telefono);
+        this.estado = new SimpleStringProperty(estado);
     }
 
-    public Proveedor(SimpleStringProperty id_proveedor, SimpleStringProperty domicilio, SimpleStringProperty rfc, SimpleStringProperty razon_social, SimpleStringProperty telefono) {
+    public Proveedor(SimpleStringProperty id_proveedor, SimpleStringProperty domicilio, SimpleStringProperty rfc, SimpleStringProperty razon_social, SimpleStringProperty telefono, SimpleStringProperty estado) {
         this.id_proveedor = id_proveedor;
         this.domicilio = domicilio;
         this.rfc = rfc;
         this.razon_social = razon_social;
         this.telefono = telefono;
+        this.estado = estado;
     }
     
     public Proveedor() {
@@ -73,6 +77,14 @@ public class Proveedor extends RecursiveTreeObject<Proveedor>{
 
     public void setTelefono(SimpleStringProperty telefono) {
         this.telefono = telefono;
+    }
+
+    public SimpleStringProperty getEstado() {
+        return estado;
+    }
+
+    public void setEstado(SimpleStringProperty estado) {
+        this.estado = estado;
     }
     
     

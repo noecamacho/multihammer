@@ -62,8 +62,8 @@ public class ProductosModalController implements Initializable {
         setUnidades();
         // Validación para el campo de material. Acepta espacios en blanco, a-z, A-Z, ñ, Ñ y acentos
         txtMaterial.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\sa-zA-ZñÑáéíóúÁÉÍÓÚ*")) {
-                txtMaterial.setText(newValue.replaceAll("[^\\sa-zA-ZñÑáéíóúÁÉÍÓÚ]", ""));
+            if (!newValue.matches("\\sa-zA-ZñÑáéíóúÁÉÍÓÚ\\d\\/*")) {
+                txtMaterial.setText(newValue.replaceAll("[^\\sa-zA-ZñÑáéíóúÁÉÍÓÚ\\d\\/]", ""));
             }
         });
         // Validación de precio. Acepta digitos, 1 punto, y más digitos
@@ -163,7 +163,7 @@ public class ProductosModalController implements Initializable {
     }
     // Funciòn para asignar las unidades al ComboBox
     public void setUnidades() {
-        ObservableList<String> data = FXCollections.observableArrayList("m", "pz", "Saco 20KG", "m²");
+        ObservableList<String> data = FXCollections.observableArrayList("m", "PZA", "Saco 50KG", "m²", "KG");
         txtUnidades.setItems(data);
     }
     // Asigna los campos con los datos a modificar

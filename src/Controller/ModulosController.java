@@ -82,7 +82,7 @@ public class ModulosController implements Initializable {
         id.setCellValueFactory((TreeTableColumn.CellDataFeatures<Perfil, String> param) -> param.getValue().getValue().id);
 
         JFXTreeTableColumn<Perfil, String> name = new JFXTreeTableColumn("Nombre");
-        name.setPrefWidth(150);
+        name.setPrefWidth(230);
         name.setCellValueFactory((TreeTableColumn.CellDataFeatures<Perfil, String> param) -> param.getValue().getValue().name);
 
         final TreeItem<Perfil> root = new RecursiveTreeItem<>(tableInformation(), RecursiveTreeObject::getChildren);
