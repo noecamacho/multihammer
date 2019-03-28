@@ -23,12 +23,12 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.layout.FlowPane;
 
 public class ModulosController implements Initializable {
-
+    // Declaración de componentes
     @FXML
     private JFXTreeTableView<Perfil> table;
     @FXML
     private FlowPane panelModulos;
-
+    // Declaración/Instanciación de variables
     private final ModulosModel modelo = new ModulosModel();
     private String idPerfil;
 
@@ -36,32 +36,40 @@ public class ModulosController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         createTableView();
     }
-
+    // Obtiene el id de la fila seleccionada
     private SimpleStringProperty getLeadSelect() {
         TreeItem<Perfil> selectedItem = table.getSelectionModel().getSelectedItem();
         return selectedItem == null ? null : selectedItem.getValue().id;
     }
-
+    // Función para desplegar los módulos
     public void modulosToggle(String id) {
+        // Obtiene todos los módulos y los que ya tiene el perfil asignado
         ArrayList<Modulos> modulos = modelo.modulosxperfil(id);
+        // Se limpia el panel de módulos
         panelModulos.getChildren().clear();
+        // Ciclo para agregar los módulos al panel
         modulos.forEach((x) -> {
+            // Valida que no se imprima el módulo llamado 'Modulos'
             if (!x.getNombre().equals("Modulos")) {
+                // Crea un JFXToggle con el nombre del módulo
                 JFXToggleButton toggleBtn = new JFXToggleButton();
                 toggleBtn.setText(x.getNombre());
+                // Se asigna el evento para activar/desactivar el módulo
                 toggleBtn.setOnAction((event) -> {
                     modelo.addModulosToPerfil(id, x.getId(), toggleBtn.isSelected());
                 });
+                // Marca el toggle como seleccionado si el módulo ya se encuentra asignado
                 if (x.getActivo() != null) {
                     toggleBtn.setSelected(true);
                 } else {
                     toggleBtn.setSelected(false);
                 }
+                // Se agrega el toggle al panel
                 panelModulos.getChildren().add(toggleBtn);
             }
         });
     }
-
+    // Se crea la tabla
     public void createTableView() {
 
         table.getSelectionModel()
@@ -72,23 +80,18 @@ public class ModulosController implements Initializable {
         id.setPrefWidth(100);
         
         id.setCellValueFactory((TreeTableColumn.CellDataFeatures<Perfil, String> param) -> param.getValue().getValue().id);
-//        id.setCellFactory((TreeTableColumn<Perfil, String> param) -> new GenericEditableTreeTableCell<>(new TextFieldEditorBuilder()));
-//        id.setOnEditCommit((TreeTableColumn.CellEditEvent<Perfil, String> t)-> t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().id.set(t.getNewValue()));
 
         JFXTreeTableColumn<Perfil, String> name = new JFXTreeTableColumn("Nombre");
-        name.setPrefWidth(150);
+        name.setPrefWidth(230);
         name.setCellValueFactory((TreeTableColumn.CellDataFeatures<Perfil, String> param) -> param.getValue().getValue().name);
-//        name.setCellFactory((TreeTableColumn<Perfil, String> param) -> new GenericEditableTreeTableCell<>(new TextFieldEditorBuilder()));
-//        name.setOnEditCommit((TreeTableColumn.CellEditEvent<Perfil, String> t)-> t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().name.set(t.getNewValue()));
 
         final TreeItem<Perfil> root = new RecursiveTreeItem<>(tableInformation(), RecursiveTreeObject::getChildren);
 
         table.getColumns().setAll(id, name);
         table.setRoot(root);
-//        table.setEditable(true);
         table.setShowRoot(false);
     }
-
+    // Se asigna la información de la tabla
     public ObservableList<Perfil> tableInformation() {
         ObservableList<Perfil> perfiles = FXCollections.observableArrayList();
         modelo.getPerfiles().forEach((x) -> {

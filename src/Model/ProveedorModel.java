@@ -20,7 +20,7 @@ public class ProveedorModel {
             ps = reg.prepareStatement("SELECT * FROM proveedores WHERE estado = 1");
             rs = ps.executeQuery();
             while(rs.next()) {
-                Proveedor x = new Proveedor(rs.getString("id_proveedor"), rs.getString("domicilio"), rs.getString("rfc"), rs.getString("razon_social"), rs.getString("telefono"));    
+                Proveedor x = new Proveedor(rs.getString("id_proveedor"), rs.getString("domicilio"), rs.getString("rfc"), rs.getString("razon_social"), rs.getString("telefono"), rs.getString("estado"));    
                 proveedores.add(x);
             }
         } catch (SQLException ex) {
@@ -87,4 +87,20 @@ public class ProveedorModel {
         con.disconnect();
         return message;
     }
+    
+    public void cambiarEstado(String id_proveedor) {
+        con = new dbConnection();
+        Connection reg = con.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps = reg.prepareStatement("UPDATE proveedores SET estado = (SELECT IF(estado = '1', '0', '1')) WHERE proveedores.`id_proveedor` = ?");
+            ps.setString(1, id_proveedor);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        con.disconnect();
+    }
+    
 }
