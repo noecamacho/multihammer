@@ -26,10 +26,10 @@ import javafx.stage.Stage;
  * @author Kevin Lizárraga
  */
 public class ProveedoresModalController implements Initializable {
-
+    // Instanciaciòn de clases
     final private ProveedorModel modelo = new ProveedorModel();
     final private Dialogs dialogs = new Dialogs();
-    
+    // Declaraciòn de componentes
     @FXML
     private StackPane root;
     @FXML
@@ -47,21 +47,24 @@ public class ProveedoresModalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Se agrega la funciòn agregar al botòn Agregar
         btnAgregar.setOnAction((event) -> {
             agregar();
         });
+        // Validaciòn del telèfono. Solo recibe digitos
         txtTelefono.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 txtTelefono.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
+        // Validaciòn de RFC. Solo 12-13 mayùsculas y digitos
         txtRFC.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[A-Z\\d]{12,13}")) {
                 txtRFC.setText(newValue.replaceAll("[^A-Z\\d]{12,13}", ""));
             }
         });
     }
-
+    // Funciòn agregar
     public void agregar() {
         if (!txtRazonSocial.getText().equals("") && !txtDomicilio.getText().equals("") && !txtTelefono.getText().equals("") && !txtRFC.getText().equals("")) {
             if(txtRFC.getText().matches("[A-ZÑ&]{3,4}\\d{6}[A-V1-9][A-Z1-9][0-9A]")) {
@@ -78,7 +81,7 @@ public class ProveedoresModalController implements Initializable {
             dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Para agregar un proveedor es necesario que todos los campos se encuentren llenos", "OK");
         }
     }
-
+    // Funciòn modificar
     public void modificar(String id_proveedor) {
         if (!txtRazonSocial.getText().equals("") && !txtDomicilio.getText().equals("") && !txtTelefono.getText().equals("") && !txtRFC.getText().equals("")) {
             if(txtRFC.getText().matches("[A-ZÑ&]{3,4}\\d{6}[A-V1-9][A-Z1-9][0-9A]")) {
@@ -95,7 +98,7 @@ public class ProveedoresModalController implements Initializable {
             dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Para modificar un proveedor es necesario que todos los campos se encuentren llenos", "OK");
         }
     }
-    
+    // Asigna los valores a los campos del elemento a modificar
     public void setValuesToModify(String id_proveedor, String domicilio, String rfc, String razon_social, String telefono) {
         txtDomicilio.setText(domicilio);
         txtRFC.setText(rfc);
@@ -107,5 +110,13 @@ public class ProveedoresModalController implements Initializable {
             modificar(id_proveedor);
         });
     }  
+    // Funciòn para cerrar el modal
+    @FXML
+    private void closeModal() {
+        if(dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "¿Estás seguro que deseas cerrar esta ventana?", "Si", "No")) {
+            Stage stage = (Stage) btnAgregar.getScene().getWindow();
+            stage.close();
+        }
+    }
     
 }

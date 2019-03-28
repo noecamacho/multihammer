@@ -24,6 +24,7 @@ public class Multihammer extends Application {
             Scene scene = new Scene(root);
 //            primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(scene);
+            primaryStage.setMaximized(true);
             primaryStage.setTitle("Login");
             primaryStage.setMaximized(true);
             primaryStage.show();

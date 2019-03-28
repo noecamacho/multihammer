@@ -9,23 +9,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="708.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VentasController">
+<AnchorPane id="AnchorPane" prefHeight="708.0" prefWidth="1366.0" stylesheets="@../Resources/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VentasController">
    <children>
       <JFXTreeTableView fx:id="table" layoutX="129.0" layoutY="87.0" prefHeight="536.0" prefWidth="1153.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets></JFXTreeTableView>
-      <JFXComboBox fx:id="txtCliente" layoutX="420.0" layoutY="31.0" prefHeight="31.0" prefWidth="163.0" promptText="Cliente" />
-      <JFXButton fx:id="btnAgregarCliente" buttonType="RAISED" layoutX="583.0" layoutY="31.0" onAction="#btnAgregarClienteAction" text="+" />
-      <JFXComboBox fx:id="txtMaterial" layoutX="656.0" layoutY="31.0" prefHeight="31.0" prefWidth="186.0" promptText="Material" />
-      <JFXComboBox fx:id="txtUnidad" disable="true" layoutX="877.0" layoutY="31.0" prefHeight="31.0" prefWidth="186.0" promptText="Unidad" />
-      <JFXTextField fx:id="txtCantidad" layoutX="1100.0" layoutY="31.0" prefHeight="31.0" prefWidth="65.0" promptText="Cantidad" />
-      <JFXButton fx:id="btnAgregar" buttonType="RAISED" layoutX="1208.0" layoutY="31.0" onAction="#btnAgregarAction" text="Agregar" />
+      <JFXComboBox fx:id="txtCliente" layoutX="386.0" layoutY="34.0" prefHeight="31.0" prefWidth="163.0" promptText="Cliente" />
+      <JFXButton fx:id="btnAgregarCliente" buttonType="RAISED" layoutX="549.0" layoutY="32.0" onAction="#btnAgregarClienteAction" text="+" />
+      <JFXComboBox fx:id="txtMaterial" layoutX="638.0" layoutY="31.0" prefHeight="31.0" prefWidth="186.0" promptText="Material" />
+      <JFXComboBox fx:id="txtUnidad" disable="true" layoutX="859.0" layoutY="31.0" prefHeight="31.0" prefWidth="186.0" promptText="Unidad" />
+      <JFXTextField fx:id="txtCantidad" layoutX="1084.0" layoutY="34.0" prefHeight="31.0" prefWidth="75.0" promptText="Cantidad" />
+      <JFXButton fx:id="btnAgregar" buttonType="RAISED" layoutX="1197.0" layoutY="32.0" onAction="#btnAgregarAction" text="Agregar" />
       <JFXButton fx:id="btnCotizar" buttonType="RAISED" layoutX="342.0" layoutY="631.0" onAction="#btnCotizarAction" prefHeight="31.0" prefWidth="170.0" text="Cotizar" />
       <JFXButton fx:id="btnVenta" buttonType="RAISED" layoutX="129.0" layoutY="631.0" onAction="#btnVentaAction" prefHeight="31.0" prefWidth="170.0" text="Venta" />
       <Label layoutX="1077.0" layoutY="636.0" text="Total:" />
       <Label fx:id="labelTotal" layoutX="1160.0" layoutY="636.0" />
-      <Label layoutX="129.0" layoutY="35.0" text="Ventas">
+      <Label layoutX="129.0" layoutY="35.0" styleClass="titleLabel" text="Ventas">
          <font>
             <Font size="36.0" />
          </font>
