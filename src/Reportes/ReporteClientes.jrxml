@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportePedidos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="348a4dd1-c5f3-41c6-9335-d1f592921f9c">
-	<property name="ireport.zoom" value="1.7715610000000026"/>
+	<property name="ireport.zoom" value="1.7715610000000055"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="41"/>
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -39,10 +39,6 @@
 				<reportElement style="SubTitle" x="0" y="46" width="157" height="22" uuid="24412bf3-c105-4574-9a86-86ef1652c053"/>
 				<text><![CDATA[por Clientes]]></text>
 			</staticText>
-			<image>
-				<reportElement x="411" y="0" width="142" height="72" uuid="95840f55-61c8-4476-82cd-1c54f7196513"/>
-				<imageExpression><![CDATA["C:\\Users\\noe\\Documents\\UPSIN\\5to Cuatri\\INS\\Vistas\\Logo\\new\\new logo.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="0" y="109" width="263" height="20" uuid="cc98d1a6-7450-4d0e-bbdf-54551b538a81"/>
 				<textElement verticalAlignment="Middle"/>
@@ -65,6 +61,10 @@
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[EMPRESA DE PRUEBA S.A. de C.V.]]></text>
 			</staticText>
+			<image>
+				<reportElement x="386" y="0" width="167" height="94" uuid="e0c40692-6891-4faf-aa6c-b3142f2403ae"/>
+				<imageExpression><![CDATA["C:\\Users\\noe\\projects\\multihammer\\src\\Resources\\new logo.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
