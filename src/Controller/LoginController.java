@@ -20,12 +20,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 // FXML Clase del Controlador "Login"
 public class LoginController implements Initializable {
-    
+    // Instanciación de la clase para mostrar dialogos
     private final Dialogs dialogs = new Dialogs();
-    
+    // Declaración de componentes
     @FXML 
     private TextField txtUser;
     @FXML 
@@ -39,19 +40,22 @@ public class LoginController implements Initializable {
     // Inicializa la clase del controlador
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Se pone el focus al campo de usuario
         Platform.runLater(()->txtUser.requestFocus());
+        // Se valida que solo puedas insertar letras de la a-z, A-Z, ñ, Ñ y digitos del 0 al 9
         txtUser.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("a-zA-ZñÑ\\d*")) {
                 txtUser.setText(newValue.replaceAll("[^a-zA-ZñÑ\\d]*", ""));
             }
         });
+        // Se valida que solo puedas insertar letras de la a-z, A-Z, ñ, Ñ y digitos del 0 al 9
         txtPassword.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("a-zA-ZñÑ\\d*")) {
                 txtPassword.setText(newValue.replaceAll("[^a-zA-ZñÑ\\d]*", ""));
             }
         });
     }
-    
+    // Se inicializa el modelo
     public void initModel(LoginModel model) {
         if(this.model != null) {
             throw new IllegalStateException("Model can only be initialized once");
@@ -59,13 +63,15 @@ public class LoginController implements Initializable {
             this.model = model;
         }
     }
-   
+   // Función para ingresar
     public void Login(ActionEvent event) throws IOException{
+        // Se valida que los campos tengan texto
         if(txtUser.getText().equals("") || txtPassword.getText().equals("")) {
             dialogs.displayMessage((Stage) btnLogin.getScene().getWindow(), "Advertencia", "Usuario o contraseña faltante", "Ok");
         } else {
             //Valida que los datos de usuario/password sean correctos
             int id = model.validarLogin(txtUser.getText(), txtPassword.getText()); 
+            // Si el modelo encontro al usuario y contraseña, se ingresa al bloque del if
             if(id != 0) {
                 //Crea controlador de la vista Menú y manda el id del perfil que ingresó, prepara la nueva vista a cargar
                 FXMLLoader testLoader = new FXMLLoader(getClass().getResource("/View/Menu.fxml"));
@@ -79,6 +85,7 @@ public class LoginController implements Initializable {
                 //Carga la vista de menu
                 window.setScene(testScene);
                 window.show();
+                // Centra la vista
                 Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
                 window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
                 window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);

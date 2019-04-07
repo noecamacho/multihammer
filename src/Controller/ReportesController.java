@@ -29,10 +29,10 @@ import net.sf.jasperreports.engine.JRException;
 import static org.apache.batik.anim.timing.Trace.print;
 
 public class ReportesController implements Initializable {
-
+    // Instanciaciòn de clases
     private final Dialogs dialogs = new Dialogs();
     private final ReportesModel modelo = new ReportesModel();
-    
+    // Declaraciòn de componentes
     @FXML
     private JFXComboBox<String> txtReporte;
     @FXML
@@ -54,15 +54,19 @@ public class ReportesController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Esconde el label de total
         labelTotal.setVisible(false);
+        // Esconde todas las tablas
         hideTables();
+        // Datos del ComboBox
         ObservableList<String> data = FXCollections.observableArrayList("Por clientes", "Por productos", "Por pedidos");
         txtReporte.setItems(data);
+        // Crea las 3 tablas
         createTable();
         createTable1();
         createTable2();
     }    
-    
+    // Crea la tabla por clientes
     public void createTable() {
         
         JFXTreeTableColumn<ReporteClientes, String> nombre = new JFXTreeTableColumn("Nombre");
@@ -79,7 +83,7 @@ public class ReportesController implements Initializable {
 
         table.getColumns().setAll(nombre, num_ventas, total);
     }
-    
+    // Asigna los datos a la tabla
     public void createTableView(String fechaInicial, String fechaFinal) {
         TreeItem<ReporteClientes> root = new RecursiveTreeItem<>(tableInformation(fechaInicial, fechaFinal), RecursiveTreeObject::getChildren);
         table.setRoot(root);
@@ -87,7 +91,7 @@ public class ReportesController implements Initializable {
         hideTables();
         table.setVisible(true);
     }
-
+    // Obtiene la informaciòn
     public ObservableList<ReporteClientes> tableInformation(String fechaInicial, String fechaFinal) {
         ObservableList<ReporteClientes> rc = FXCollections.observableArrayList();
         modelo.getInfoClientes(fechaInicial, fechaFinal).forEach((x) -> {
@@ -95,7 +99,7 @@ public class ReportesController implements Initializable {
         });
         return rc;
     }
-    
+    // Crea la tabla por productos
     public void createTable1() {
         
         JFXTreeTableColumn<ReporteProductos, String> material = new JFXTreeTableColumn("Material");
@@ -120,7 +124,7 @@ public class ReportesController implements Initializable {
 
         table1.getColumns().setAll(material, unidad, cantidad, precio, total);
     }
-    
+    // Asigna los datos
     public void createTableView1(String fechaInicial, String fechaFinal) {
         TreeItem<ReporteProductos> root = new RecursiveTreeItem<>(tableInformation1(fechaInicial, fechaFinal), RecursiveTreeObject::getChildren);
         table1.setRoot(root);
@@ -128,7 +132,7 @@ public class ReportesController implements Initializable {
         hideTables();
         table1.setVisible(true);
     }
-
+    // Obtiene los datos
     public ObservableList<ReporteProductos> tableInformation1(String fechaInicial, String fechaFinal) {
         ObservableList<ReporteProductos> rp = FXCollections.observableArrayList();
         modelo.getInfoProductos(fechaInicial, fechaFinal).forEach((x) -> {
@@ -136,7 +140,7 @@ public class ReportesController implements Initializable {
         });
         return rp;
     }
-    
+    // Crea la tabla por pedidos
     public void createTable2() {
         
         JFXTreeTableColumn<Pedidos, String> id = new JFXTreeTableColumn("ID");
@@ -157,7 +161,7 @@ public class ReportesController implements Initializable {
 
         table2.getColumns().setAll(id, nombre, fecha, total);
     }
-    
+    // Asigna los datos
     public void createTableView2(String fechaInicio, String fechaFinal) {
         TreeItem<Pedidos> root = new RecursiveTreeItem<>(tableInformation2(fechaInicio, fechaFinal), RecursiveTreeObject::getChildren);
         table2.setRoot(root);
@@ -165,7 +169,7 @@ public class ReportesController implements Initializable {
         hideTables();
         table2.setVisible(true);
     }
-
+    // Obtiene los datos
     public ObservableList<Pedidos> tableInformation2(String fechaInicio, String fechaFinal) {
         float total = 0;
         ObservableList<Pedidos> pedidos = FXCollections.observableArrayList();
@@ -174,17 +178,20 @@ public class ReportesController implements Initializable {
         });
         return pedidos;
     }
-    
+    // Esconde las 3 tablas
     public void hideTables() {
         table.setVisible(false);
         table1.setVisible(false);
         table2.setVisible(false);
     }
-    
+    // Funciòn para generar los reportes
     @FXML
     private void btnReporteAction() {
+        // Valida que todos los campos tengan un valor
         if(txtFechaInicial.getValue() != null && txtFechaFinal.getValue() != null && txtReporte.getValue() != null) {
+            // Valida que la fecha final sea mayor que la menor
             if(txtFechaInicial.getValue().isBefore(txtFechaFinal.getValue())) {
+                // Muestra la tabla con valores del tipo de reporte seleccionado
                 switch(txtReporte.getValue()) {
                     case "Por clientes":
                         createTableView(txtFechaInicial.getValue().toString(), txtFechaFinal.getValue().toString());
@@ -203,7 +210,7 @@ public class ReportesController implements Initializable {
             dialogs.displayMessage((Stage) btnReporte.getScene().getWindow(), "Advertencia", "Es necesario escoger el tipo de reporte y el rango de fechas antes de generar el reporte", "Ok");
         }
     }
-    
+    // Funciòn para generar PDFs del tipo de reporte seleccionado
     @FXML
     private void btnPDFAction() throws JRException, ClassNotFoundException, SQLException, IOException {
         if(txtFechaInicial.getValue() != null && txtFechaFinal.getValue() != null && txtReporte.getValue() != null) {
@@ -215,5 +222,5 @@ public class ReportesController implements Initializable {
                 report.showReport(ReportType, fechaInicio, fechaFinal);
             }
         }
-    }
+    } 
 }
