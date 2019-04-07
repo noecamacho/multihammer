@@ -17,12 +17,12 @@ import net.sf.jasperreports.swing.JRViewer;
 public class PrintReport extends JFrame {
     
     private dbConnection con;
- 
-    // Muestra el 
+    
+// Muestra el  reporte elegido
     public void showReport(String ReportType, String fechaInicio, String fechaFinal) throws JRException, ClassNotFoundException, SQLException, IOException  {
         String reportSrcFile = null;
         String rootDir = System.getProperty("user.dir");
-        
+        System.out.println(rootDir);
         // Elige el tipo de reporte a mostrar
         switch(ReportType) {    
             case "Por clientes":
