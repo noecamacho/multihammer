@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportePedidos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="348a4dd1-c5f3-41c6-9335-d1f592921f9c">
+	<property name="ireport.zoom" value="1.7715610000000026"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="tableHeaders"/>
+	<parameter name="fechaInicio" class="java.lang.String"/>
+	<parameter name="fechaFinal" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT materiales.`material`, productos.`unidad`, SUM(registros.`cantidad`) AS cantidad, productos.`precio`, SUM(registros.`cantidad`) * productos.`precio` AS total FROM registros INNER JOIN productos ON productos.`id_producto` = registros.`id_producto` INNER JOIN materiales ON materiales.`id_material` = productos.`id_material` INNER JOIN pedidos ON pedidos.`id_pedido` = registros.`id_pedido` WHERE pedidos.fecha >= $P{fechaInicio} AND pedidos.fecha <= $P{fechaFinal} GROUP BY registros.`id_producto` ORDER BY total DESC]]>
+	</queryString>
+	<field name="material" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="unidad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precio" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="total_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="221" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="baf5d084-78d6-47be-b30e-22e37643619b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Reporte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="46" width="157" height="22" uuid="24412bf3-c105-4574-9a86-86ef1652c053"/>
+				<text><![CDATA[por Productos]]></text>
+			</staticText>
+			<image>
+				<reportElement x="411" y="0" width="142" height="72" uuid="95840f55-61c8-4476-82cd-1c54f7196513"/>
+				<imageExpression><![CDATA["C:\\Users\\noe\\Documents\\UPSIN\\5to Cuatri\\INS\\Vistas\\Logo\\new\\new logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="107" width="263" height="20" uuid="cc98d1a6-7450-4d0e-bbdf-54551b538a81"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Castillito Dorado del Roble Verde #10037]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="138" width="263" height="20" uuid="8e1c713d-359d-4966-abde-d817412e4dc4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="122" width="263" height="20" uuid="9109e3c0-4c38-4cea-8bf5-82203af16a47"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Mazatlán, Sinaloa, México]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="92" width="263" height="23" uuid="25f1f32b-f999-4758-be2f-0b72c9bf8d7e"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[EMPRESA DE PRUEBA S.A. de C.V.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="19">
+			<rectangle>
+				<reportElement x="0" y="0" width="553" height="19" uuid="4e8ce1bf-31dd-40c7-8217-bec048f8b718"/>
+			</rectangle>
+			<staticText>
+				<reportElement style="tableHeaders" x="11" y="0" width="94" height="16" uuid="57951ffa-6cd7-49c4-aeb1-5cfaa8a8c289"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Material]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="tableHeaders" x="103" y="0" width="105" height="16" uuid="a0765070-8aa6-4f06-9b08-ce0865ac19e2"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="tableHeaders" x="206" y="0" width="105" height="16" uuid="682446f6-4e41-4373-b06e-7f51cc87e12d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="tableHeaders" x="416" y="0" width="125" height="16" uuid="db91e80a-89ef-4bf6-b27a-c51869898742"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="tableHeaders" x="311" y="0" width="105" height="16" uuid="2aefa9cd-40d9-48d2-a0e5-c34e7c18d144"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="11" y="0" width="92" height="20" uuid="fc810820-d36f-4173-835c-771792ed4610"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="0" width="101" height="20" uuid="56b58130-a408-49d7-ad77-9756f994c552"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{unidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="416" y="0" width="125" height="20" uuid="977d9db6-097d-479c-b607-0e1e0a0f0758"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="208" y="0" width="101" height="20" uuid="c6bd5a91-3011-4317-a4a5-54902e647663"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="311" y="0" width="105" height="20" uuid="adf964dd-cc99-44a9-acad-2c504c51307b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="50">
+			<rectangle>
+				<reportElement x="370" y="0" width="183" height="50" uuid="f6fd2a61-e168-46c2-912e-3a5b83c037aa"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="370" y="0" width="63" height="50" uuid="16e8a159-091e-4fa4-9e87-40e566bb8529"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField pattern="###0.00">
+				<reportElement x="445" y="0" width="108" height="50" uuid="bb1ebf65-5bab-4513-a806-7aee17f468e7"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{total_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="433" y="0" width="12" height="50" uuid="f70e1555-9de7-4252-89c9-d77376c07e2e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="15" width="80" height="20" uuid="957b3a75-d4c7-4289-b6a7-3b12142280d2"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="15" width="40" height="20" uuid="8ac9daa6-ef59-44a3-8d48-ddbc2817311e"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

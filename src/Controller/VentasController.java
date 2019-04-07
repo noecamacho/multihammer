@@ -4,6 +4,7 @@ import Model.ComboBoxClass;
 import Model.Dialogs;
 import Model.Venta;
 import Model.VentasModel;
+import Reportes.PrintReport;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -13,6 +14,7 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -32,6 +34,7 @@ import javafx.scene.control.TreeTableRow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import net.sf.jasperreports.engine.JRException;
 
 public class VentasController implements Initializable {
 
@@ -235,8 +238,16 @@ public class VentasController implements Initializable {
     }
 
     @FXML
-    private void btnCotizarAction() {
-        
+    private void btnCotizarAction() throws JRException, ClassNotFoundException, SQLException, IOException {
+        if(productos.size() > 0 && !txtCliente.getSelectionModel().isEmpty()) {
+            if(dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Cotización", "¿Estás seguro de que quieres generar una cotización?", "Si", "No")) {
+                modelo.registrarCotizacion(productos, txtCliente.getSelectionModel().getSelectedItem().getId(), labelTotal.getText());
+                productos.clear();
+                createTableView();
+                setClientes();
+                labelTotal.setText("");
+            }
+        }
     }
 
     @FXML

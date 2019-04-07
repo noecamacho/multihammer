@@ -1,5 +1,7 @@
 package Model;
 
+import Reportes.PrintReport;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import net.sf.jasperreports.engine.JRException;
 
 public class VentasModel {
     
@@ -135,6 +138,51 @@ public class VentasModel {
             System.out.println(ex);
         }
         con.disconnect();
+    }
+    
+    public void registrarCotizacion(ObservableList<Venta> productos, String id_cliente, String total) throws JRException, ClassNotFoundException, IOException {
+        con = new dbConnection();
+        int id_venta;
+        Connection reg = con.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps = reg.prepareStatement("INSERT INTO pedidos (id_cliente, total, estado) VALUES (?,?, 0)", Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, id_cliente);
+            ps.setString(2, total);
+            ps.executeUpdate();
+            rs = ps.getGeneratedKeys();
+            rs.next();
+            id_venta = rs.getInt(1);
+            ps = reg.prepareStatement("INSERT INTO registros (id_pedido, id_producto, cantidad, precio) VALUES (?,?,?,?)");
+            for (Venta producto : productos) {
+                ps.setInt(1, id_venta);
+                ps.setString(2, producto.getId_producto());
+                ps.setString(3, producto.getCantidad().get());
+                ps.setString(4, producto.getPrecio().get());
+                ps.addBatch();
+            }
+            ps.executeBatch();
+            ps = reg.prepareStatement("UPDATE productos SET cantidad = cantidad - ? WHERE cantidad >= ? && id_producto = ?");
+            for (Venta producto : productos) {
+                ps.setString(1, producto.cantidad.get());
+                ps.setString(2, producto.cantidad.get());
+                ps.setString(3, producto.getId_producto());
+                ps.addBatch();
+            }
+            ps.executeBatch();
+            
+            // Instanciación para imprimir cotización utilizando el ID de la venta (pedido)
+            PrintReport cotizacion = new PrintReport();
+            cotizacion.showCotizacion(id_venta);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        con.disconnect();
+    }
+    
+    public void getCotizacion() {
+        
     }
     
 }

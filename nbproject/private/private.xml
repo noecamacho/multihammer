@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Resources/main.css</file>
-            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Model/MenuModel.java</file>
-            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Controller/LoginController.java</file>
-            <file>file:/C:/Users/Kevin_Lizarraga/Desktop/UPSIN/5%20Cuatrimestre/POO/multihammer/src/Controller/MenuController.java</file>
+            <file>file:/C:/Users/noe/projects/multihammer/src/Reportes/PrintReport.java</file>
+            <file>file:/C:/Users/noe/projects/multihammer/src/Controller/PedidosController.java</file>
+            <file>file:/C:/Users/noe/projects/multihammer/src/Model/VentasModel.java</file>
+            <file>file:/C:/Users/noe/projects/multihammer/src/Controller/DetalleVentasController.java</file>
+            <file>file:/C:/Users/noe/projects/multihammer/src/Controller/VentasController.java</file>
+            <file>file:/C:/Users/noe/projects/multihammer/src/multihammer/Multihammer.java</file>
+            <file>file:/C:/Users/noe/projects/multihammer/src/Model/PedidosModel.java</file>
+            <file>file:/C:/Users/noe/projects/multihammer/src/Reportes/Facturacion.jrxml</file>
+            <file>file:/C:/Users/noe/projects/multihammer/src/Model/Pedidos.java</file>
         </group>
     </open-files>
 </project-private>
