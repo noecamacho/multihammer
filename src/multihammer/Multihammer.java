@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
 import javafx.stage.StageStyle;
 
 public class Multihammer extends Application {
@@ -24,6 +25,10 @@ public class Multihammer extends Application {
             Scene scene = new Scene(root);
 //            primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(scene);
+            //Cambia el icono de la aplicación
+            Image icon = new Image("/Resources/logo_icon.png");
+            primaryStage.getIcons().add(icon);
+           
             primaryStage.setMaximized(true);
             primaryStage.setTitle("Login");
             primaryStage.setMaximized(true);
