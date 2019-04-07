@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="341.0" prefWidth="600.0" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="708.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UsuariosController">
    <children>
-      <Label layoutX="209.0" layoutY="136.0" text="Usuarios" textFill="WHITE">
+      <JFXTreeTableView fx:id="table" layoutX="152.0" layoutY="83.0" prefHeight="550.0" prefWidth="1103.0">
+         <columns>
+            <TreeTableColumn fx:id="col_id_usuario" prefWidth="272.0" text="ID Usuario" />
+            <TreeTableColumn fx:id="col_usuario" prefWidth="276.0" text="Usuario" />
+            <TreeTableColumn fx:id="col_perfil" minWidth="0.0" prefWidth="288.0" text="Perfil" />
+            <TreeTableColumn fx:id="col_estado" prefWidth="266.0" text="Estado" />
+         </columns></JFXTreeTableView>
+      <JFXButton fx:id="btnAgregar" layoutX="821.0" layoutY="35.0" onAction="#btnAgregarAction" prefHeight="31.0" prefWidth="166.0" text="Agregar">
          <font>
-            <Font size="48.0" />
+            <Font size="18.0" />
+         </font></JFXButton>
+      <JFXTextField fx:id="searchField" layoutX="301.0" layoutY="35.0" prefHeight="39.0" prefWidth="491.0" promptText="Buscar">
+         <font>
+            <Font size="18.0" />
+         </font></JFXTextField>
+      <Label layoutX="152.0" layoutY="26.0" text="Usuarios" textFill="WHITE">
+         <font>
+            <Font size="36.0" />
          </font>
       </Label>
    </children>
