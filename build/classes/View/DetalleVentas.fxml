@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1F3041;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DetalleVentasController">
    <children>
@@ -11,5 +13,10 @@
       <Label fx:id="labelFecha" layoutX="99.0" layoutY="63.0" prefHeight="21.0" prefWidth="416.0" text="Fecha" />
       <Label fx:id="labelTotal" layoutX="595.0" layoutY="535.0" prefHeight="21.0" prefWidth="107.0" />
       <Label layoutX="554.0" layoutY="535.0" text="Total:" />
+      <JFXButton fx:id="btnCotizar" buttonType="RAISED" contentDisplay="CENTER" layoutX="339.0" layoutY="524.0" onAction="#CotizarVenta" prefHeight="39.0" prefWidth="124.0" text="Facturar" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Roboto Black" size="18.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

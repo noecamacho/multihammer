@@ -5,6 +5,7 @@ import Model.Pedidos;
 import Model.ReporteClientes;
 import Model.ReporteProductos;
 import Model.ReportesModel;
+import Reportes.PrintReport;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXButton;
@@ -12,7 +13,9 @@ import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +25,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
+import static org.apache.batik.anim.timing.Trace.print;
 
 public class ReportesController implements Initializable {
 
@@ -200,8 +205,15 @@ public class ReportesController implements Initializable {
     }
     
     @FXML
-    private void btnPDFAction() {
-    
+    private void btnPDFAction() throws JRException, ClassNotFoundException, SQLException, IOException {
+        if(txtFechaInicial.getValue() != null && txtFechaFinal.getValue() != null && txtReporte.getValue() != null) {
+            if(txtFechaInicial.getValue().isBefore(txtFechaFinal.getValue())) {
+                String fechaInicio = txtFechaInicial.getValue().toString();
+                String fechaFinal = txtFechaFinal.getValue().toString();
+                String ReportType = txtReporte.getValue(); 
+                PrintReport report = new PrintReport();
+                report.showReport(ReportType, fechaInicio, fechaFinal);
+            }
+        }
     }
-    
 }

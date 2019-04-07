@@ -15,7 +15,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
@@ -77,6 +79,8 @@ public class PedidosController implements Initializable {
                         Parent root = modal.load();
                         root.getStylesheets().add("/Resources/main.css");
                         DetalleVentasController dvc = modal.getController();
+                        // Envio el ID del pedido para generar factura en caso de querer
+                        dvc.setId_venta( Integer.parseInt(rowData.getId_pedido().get() ) );
                         dvc.setValues(rowData.getId_pedido().get(), rowData.getNombre().get(), rowData.getFecha().get(), rowData.getTotal().get());
                         stage.setScene(new Scene(root));
                         stage.setTitle("Datalles del pedido");

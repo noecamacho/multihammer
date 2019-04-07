@@ -2,23 +2,30 @@ package Controller;
 
 import Model.Registros;
 import Model.PedidosModel;
+import Reportes.PrintReport;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import net.sf.jasperreports.engine.JRException;
 
 public class DetalleVentasController implements Initializable {
 
     private final PedidosModel modelo = new PedidosModel();
+    private int id_venta;
     
     @FXML
     private Label labelNombre;
@@ -28,6 +35,8 @@ public class DetalleVentasController implements Initializable {
     private Label labelTotal;
     @FXML
     private JFXTreeTableView table;
+    @FXML
+    private JFXButton btnCotizar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -74,6 +83,16 @@ public class DetalleVentasController implements Initializable {
         labelFecha.setText("Fecha: " + fechaVenta);
         labelTotal.setText("$ " + total);
         createTableView(id_venta);
+    }
+
+    public void setId_venta(int id_venta) {
+        this.id_venta = id_venta;
+    }
+
+    @FXML
+    private void CotizarVenta(ActionEvent event) throws JRException, ClassNotFoundException, SQLException, IOException {
+        PrintReport facturacion = new PrintReport();
+        facturacion.showFacturacion(this.id_venta);
     }
     
 }
