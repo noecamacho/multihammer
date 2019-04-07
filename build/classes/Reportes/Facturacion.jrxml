@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportePedidos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="348a4dd1-c5f3-41c6-9335-d1f592921f9c">
 	<property name="ireport.zoom" value="1.6105100000000048"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="13"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -140,10 +140,20 @@ WHERE pedidos.id_pedido = $P{idVenta};]]>
 				<reportElement x="0" y="138" width="116" height="20" uuid="3073dbcf-7322-45a8-baf2-2d811ec78def"/>
 				<text><![CDATA[Fecha y Hora de emisión:]]></text>
 			</staticText>
-			<image>
-				<reportElement x="336" y="0" width="219" height="82" uuid="cc089162-04eb-41d4-b146-fa49b87b501a"/>
-				<imageExpression><![CDATA["C:\\Users\\noe\\projects\\multihammer\\src\\Resources\\new logo.png"]]></imageExpression>
-			</image>
+			<staticText>
+				<reportElement x="390" y="0" width="162" height="56" uuid="ac712521-7729-4494-ada9-944d68f5944e"/>
+				<textElement>
+					<font fontName="Roboto" size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Multi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="31" width="162" height="56" uuid="7856eb4f-2cf8-4b52-97a6-9fb3ace149e5"/>
+				<textElement>
+					<font fontName="Roboto" size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hammer]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
