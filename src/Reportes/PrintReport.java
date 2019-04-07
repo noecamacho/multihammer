@@ -66,8 +66,8 @@ public class PrintReport extends JFrame {
         // Los parametros a reportar
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("idVenta", id_venta);
-
-        //Cargado de reporte y muestra su vista
+ 
+       //Cargado de reporte y muestra su vista
         JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, reg);
         JRViewer viewer = new JRViewer(print);
         viewer.setOpaque(true);
