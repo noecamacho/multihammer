@@ -18,7 +18,7 @@ public class UsuariosModel {
         PreparedStatement ps;
         ResultSet rs;
         try {
-            ps = reg.prepareStatement("SELECT id_usuario,usuario,nombre,estado FROM usuarios INNER JOIN perfiles ON usuarios.id_perfil=perfiles.id_perfil");
+            ps = reg.prepareStatement("SELECT id_usuario,usuario,nombre, (SELECT IF (estado = 1, \"Activo\", \"Inactivo\") )as estado FROM usuarios INNER JOIN perfiles ON usuarios.id_perfil=perfiles.id_perfil");
             rs = ps.executeQuery();
             while(rs.next()) {
                 Usuario x = new Usuario(rs.getString("id_usuario"), rs.getString("usuario"), rs.getString("nombre"), rs.getString("usuario"), rs.getString("estado"));    
@@ -45,7 +45,7 @@ public class UsuariosModel {
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
-            message = "El ID de Perfil no se puede repetir";
+            message = "El Usuario no se puede repetir";
         }
         con.disconnect();
         return message;
@@ -73,5 +73,18 @@ public class UsuariosModel {
         return perfiles;
     }
     
-    
+    public void cambiarEstado(String id_usuario) {
+        con = new dbConnection();
+        Connection reg = con.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps = reg.prepareStatement("UPDATE usuarios SET estado = (SELECT IF(estado = '1', '0', '1')) WHERE usuarios.`id_usuario` = ?");
+            ps.setString(1, id_usuario);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        con.disconnect();
+    }
 }

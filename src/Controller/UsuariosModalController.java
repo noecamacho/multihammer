@@ -6,8 +6,12 @@ import Model.UsuariosModel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,9 +26,11 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 public class UsuariosModalController implements Initializable {
-
+    //Instanciación del modelo UsuariosModel
     final private UsuariosModel modelo = new UsuariosModel();
+    //Instanciación de la calse para mostrar dialogos
     final private Dialogs dialogs = new Dialogs();
+    //Declaración de componentes
     //@FXML
     //private Label labelHeader;
     @FXML
@@ -45,19 +51,27 @@ public class UsuariosModalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Se asigna el evento agregar al botón btnAgregar
         btnAgregar.setOnAction((event) -> {
-            agregar();
+            try {
+                agregar();
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(UsuariosModalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
+        // Validación de usuario. Solo se pueden insertar caracteres a-z, A-Z, n, Ñ y acentos en vocales
         txtUsuario.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("a-zA-ZñÑáéíóúÁÉÍÓÚ\\s*")) {
                 txtUsuario.setText(newValue.replaceAll("[^a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]*", ""));
             }
         });
+        // Validación de Contraseña. Solo se pueden insertar caracteres a-z, A-Z, n, Ñ y acentos en vocales
         txtPassword.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("a-zA-ZñÑáéíóúÁÉÍÓÚ\\s*")) {
                 txtPassword.setText(newValue.replaceAll("[^a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]*", ""));
             }
         });
+        //Se crea la lista con los perfiles que hay
         txtID_perfil.setConverter(new StringConverter<ComboBoxClass>() {
             @Override
             public String toString(ComboBoxClass object) {
@@ -75,7 +89,7 @@ public class UsuariosModalController implements Initializable {
         //});
         setPerfiles();
     }    
-    
+    // Función agregar
     private void btnAgregarAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         FXMLLoader modal = new FXMLLoader(getClass().getResource("/View/UsuariosModal.fxml"));
@@ -87,11 +101,18 @@ public class UsuariosModalController implements Initializable {
         stage.initOwner(((Node)event.getSource()).getScene().getWindow() );
         stage.showAndWait();
     }
-    
-    public void agregar() {
+    //Funcion para encriptar contraseñas
+     private static String encriptar(String s) throws UnsupportedEncodingException{
+        return Base64.getEncoder().encodeToString(s.getBytes("utf-8"));
+    }
+    //Se agrega el usuario a la base de datos
+    public void agregar() throws UnsupportedEncodingException {
         if (!txtUsuario.getText().equals("") && !txtPassword.getText().equals("") && !txtID_perfil.getSelectionModel().isEmpty()) {
             if(txtPasswordConfirmacion.getText().equals(txtPassword.getText())) {
-                String message = modelo.agregarUsuario(txtID_perfil.getValue().getId(),txtUsuario.getText(), txtPassword.getText());
+                //Encriptar contraseña para ingresarla a la base de datos
+                String encrip = encriptar(txtPassword.getText());
+                
+                String message = modelo.agregarUsuario(txtID_perfil.getValue().getId(),txtUsuario.getText(),encrip);
                 if(message.equals("Usuario agregado exitosamente")) {
                     Stage stage = (Stage) btnAgregar.getScene().getWindow();
                     stage.close();
@@ -105,7 +126,7 @@ public class UsuariosModalController implements Initializable {
             dialogs.displayMessage((Stage) btnAgregar.getScene().getWindow(), "Advertencia", "Para agregar un usuario es necesario que todos los campos se encuentren llenos", "OK");
         }
     }
-    
+    //Muestra perfiles Existentes
     public void setPerfiles() {
         txtID_perfil.setItems(modelo.getPerfiles());
     }

@@ -4,7 +4,9 @@ import Model.Dialogs;
 import Model.LoginModel;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -63,14 +65,22 @@ public class LoginController implements Initializable {
             this.model = model;
         }
     }
+    //Función para encriptar la contraseña
+    private static String encriptar(String s) throws UnsupportedEncodingException{
+        return Base64.getEncoder().encodeToString(s.getBytes("utf-8"));
+    }
+    
    // Función para ingresar
     public void Login(ActionEvent event) throws IOException{
         // Se valida que los campos tengan texto
         if(txtUser.getText().equals("") || txtPassword.getText().equals("")) {
             dialogs.displayMessage((Stage) btnLogin.getScene().getWindow(), "Advertencia", "Usuario o contraseña faltante", "Ok");
         } else {
-            //Valida que los datos de usuario/password sean correctos
-            int id = model.validarLogin(txtUser.getText(), txtPassword.getText()); 
+            //Encritar contraseña para compararla ya encriptada
+            String encrip = encriptar(txtPassword.getText());
+                
+            //Valida que los datos de usuario/password sean correctos                      
+            int id = model.validarLogin(txtUser.getText(), encrip); 
             // Si el modelo encontro al usuario y contraseña, se ingresa al bloque del if
             if(id != 0) {
                 //Crea controlador de la vista Menú y manda el id del perfil que ingresó, prepara la nueva vista a cargar
