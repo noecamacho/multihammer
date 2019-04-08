@@ -20,7 +20,7 @@ public class PedidosModel {
         PreparedStatement ps;
         ResultSet rs;
         try {
-            ps = reg.prepareStatement("SELECT pedidos.id_pedido, CONCAT(clientes.nombre, ' ', clientes.apellido) as nombre, pedidos.fecha, pedidos.total FROM pedidos INNER JOIN clientes ON clientes.id_cliente = pedidos.id_cliente");
+            ps = reg.prepareStatement("SELECT pedidos.id_pedido, CONCAT(clientes.nombre, ' ', clientes.apellido) as nombre, pedidos.fecha, pedidos.total FROM pedidos INNER JOIN clientes ON clientes.id_cliente = pedidos.id_cliente WHERE pedidos.estado = 1");
             rs = ps.executeQuery();
             while(rs.next()) {
                 Pedidos x = new Pedidos(rs.getString("id_pedido"), rs.getString("nombre"), rs.getString("fecha"), rs.getString("total"));    
@@ -41,7 +41,7 @@ public class PedidosModel {
         PreparedStatement ps;
         ResultSet rs;
         try {
-            ps = reg.prepareStatement("SELECT pedidos.id_pedido, CONCAT(clientes.nombre, ' ', clientes.apellido) as nombre, pedidos.fecha, pedidos.total FROM pedidos INNER JOIN clientes ON clientes.id_cliente = pedidos.id_cliente WHERE pedidos.fecha >= ? AND pedidos.fecha <= ?");
+            ps = reg.prepareStatement("SELECT pedidos.id_pedido, CONCAT(clientes.nombre, ' ', clientes.apellido) as nombre, pedidos.fecha, pedidos.total FROM pedidos INNER JOIN clientes ON clientes.id_cliente = pedidos.id_cliente WHERE pedidos.fecha >= ? AND pedidos.fecha <= ? AND pedidos.estado = 1");
             ps.setString(1, fechaInicio);
             ps.setString(2, fechaFinal);
             rs = ps.executeQuery();
