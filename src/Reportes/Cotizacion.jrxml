@@ -140,13 +140,20 @@ WHERE pedidos.id_pedido = $P{idVenta};]]>
 				<reportElement x="0" y="138" width="116" height="20" uuid="3073dbcf-7322-45a8-baf2-2d811ec78def"/>
 				<text><![CDATA[Fecha y Hora de emisión:]]></text>
 			</staticText>
-			<image>
-				<reportElement x="350" y="-1" width="203" height="83" uuid="5ef75955-922b-40f8-a105-15fb9b2e820b"/>
-				<imageExpression><![CDATA[$F{LogoImage}]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="300" y="46" width="100" height="50" uuid="2c9baf1e-7d8e-4a84-8987-eaecc1b959d2"/>
-			</image>
+			<staticText>
+				<reportElement x="334" y="0" width="162" height="56" uuid="dbaf0a15-db73-45a2-81fe-a0489cd5126b"/>
+				<textElement>
+					<font fontName="Roboto" size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Multi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="31" width="162" height="56" uuid="0d43cb58-ab4c-47bf-b66e-fc2488d2bf9c"/>
+				<textElement>
+					<font fontName="Roboto" size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hammer]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>

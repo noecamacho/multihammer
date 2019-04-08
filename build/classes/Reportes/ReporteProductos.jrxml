@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportePedidos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="348a4dd1-c5f3-41c6-9335-d1f592921f9c">
-	<property name="ireport.zoom" value="1.7715610000000026"/>
+	<property name="ireport.zoom" value="1.9487171000000048"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
@@ -47,10 +47,6 @@
 				<reportElement style="SubTitle" x="0" y="46" width="157" height="22" uuid="24412bf3-c105-4574-9a86-86ef1652c053"/>
 				<text><![CDATA[por Productos]]></text>
 			</staticText>
-			<image>
-				<reportElement x="411" y="0" width="142" height="72" uuid="95840f55-61c8-4476-82cd-1c54f7196513"/>
-				<imageExpression><![CDATA["C:\\Users\\noe\\Documents\\UPSIN\\5to Cuatri\\INS\\Vistas\\Logo\\new\\new logo.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="0" y="107" width="263" height="20" uuid="cc98d1a6-7450-4d0e-bbdf-54551b538a81"/>
 				<textElement verticalAlignment="Middle"/>
@@ -72,6 +68,20 @@
 				<reportElement x="0" y="92" width="263" height="23" uuid="25f1f32b-f999-4758-be2f-0b72c9bf8d7e"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[EMPRESA DE PRUEBA S.A. de C.V.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="162" height="56" uuid="6244c0c1-f891-43f9-a2ec-1c0e4f702361"/>
+				<textElement>
+					<font fontName="Roboto" size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Multi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="31" width="162" height="56" uuid="e68a4f65-f91b-469c-9e07-8dec05036506"/>
+				<textElement>
+					<font fontName="Roboto" size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hammer]]></text>
 			</staticText>
 		</band>
 	</title>
