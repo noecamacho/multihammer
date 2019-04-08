@@ -71,6 +71,12 @@ public class UsuariosModalController implements Initializable {
                 txtPassword.setText(newValue.replaceAll("[^a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]*", ""));
             }
         });
+        // Validación de confirmacion de Contraseña. Solo se pueden insertar caracteres a-z, A-Z, n, Ñ y acentos en vocales
+        txtPasswordConfirmacion.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("a-zA-ZñÑáéíóúÁÉÍÓÚ\\s*")) {
+                txtPasswordConfirmacion.setText(newValue.replaceAll("[^a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]*", ""));
+            }
+        });
         //Se crea la lista con los perfiles que hay
         txtID_perfil.setConverter(new StringConverter<ComboBoxClass>() {
             @Override
