@@ -1,9 +1,11 @@
 package Model;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
 
 public class LoginModel {
     
@@ -16,14 +18,14 @@ public class LoginModel {
         PreparedStatement ps;
         ResultSet rs;
         try {
-            ps = reg.prepareStatement("SELECT usuarios.id_usuario FROM usuarios where usuario = ? AND password = ?");
+            ps = reg.prepareStatement("SELECT usuarios.id_perfil FROM usuarios where usuario = ? AND password = ?");
             ps.setString(1, username);
             ps.setString(2, password);
             rs = ps.executeQuery();
             con.disconnect();
             if(rs.next()) {
                     System.out.println("Ingreso exitoso");
-                    return rs.getInt("id_usuario");
+                    return rs.getInt("id_perfil");
             }
         } catch (SQLException ex) {
             System.out.println(ex);
